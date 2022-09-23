@@ -1,4 +1,4 @@
-[![Build Status](https://bigbinary.semaphoreci.com/badges/wheel/branches/master.svg?style=shields)](https://bigbinary.semaphoreci.com/projects/wheel)
+[![Build Status](https://bigbinary.semaphoreci.com/badges/neetoUI/branches/master.svg?style=shields)](https://bigbinary.semaphoreci.com/projects/neetoUI)
 
 Made by the team at [BigBinary](https://bigbinary.com), this is a base project to quickly spin up a
 Rails application built with opinions of BigBinary style of working.
@@ -32,7 +32,7 @@ Visit http://localhost:3000 and login with email `oliver@example.com` and passwo
 
 ## Using docker for development
 
-Follow the instructions mentioned [here](https://github.com/bigbinary/wheel/blob/master/docs/using_docker.md) to use docker for development.
+Follow the instructions mentioned [here](https://github.com/bigbinary/neetoUI/blob/master/docs/using_docker.md) to use docker for development.
 
 ## Replace neetoUI with your project name
 
@@ -41,7 +41,7 @@ replace all occurrences of `neetoUI` with `Pump`.
 
 ```bash
 perl -pi -w -e 's/neetoUI/Pump/g;' $(git ls-files)
-perl -pi -w -e 's/wheel/Pump/g;' $(git ls-files)
+perl -pi -w -e 's/neetoUI/Pump/g;' $(git ls-files)
 ```
 
 ## Features
@@ -73,4 +73,4 @@ automatically deploys an application for that branch.
 
 ![BigBinary](https://raw.githubusercontent.com/bigbinary/bigbinary-assets/press-assets/PNG/logo-light-solid-small.png?raw=true)
 
-wheel is maintained by [BigBinary](https://www.BigBinary.com). BigBinary is a software consultancy company. We build web and mobile applications using Ruby on Rails, React.js, React Native and Node.js.
+neetoUI is maintained by [BigBinary](https://www.BigBinary.com). BigBinary is a software consultancy company. We build web and mobile applications using Ruby on Rails, React.js, React Native and Node.js.
