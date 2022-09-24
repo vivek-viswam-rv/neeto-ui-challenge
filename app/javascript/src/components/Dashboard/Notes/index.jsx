@@ -4,14 +4,13 @@ import EmptyNotesListImage from "images/EmptyNotesList";
 import { Button, PageLoader } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
-import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
+import { DUMMY_NOTES } from "./constants";
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import NewNotePane from "./Pane/Create";
 import Table from "./Table";
-// import { DUMMY_NOTES, DUMMY_CONTACTS, TAGS, ROLES } from "./constants";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
@@ -26,13 +25,10 @@ const Notes = () => {
     fetchNotes();
   }, []);
 
-  const fetchNotes = async () => {
+  const fetchNotes = () => {
     try {
       setLoading(true);
-      const {
-        data: { notes },
-      } = await notesApi.fetch();
-      setNotes(notes);
+      setNotes(DUMMY_NOTES);
     } catch (error) {
       logger.error(error);
     } finally {
