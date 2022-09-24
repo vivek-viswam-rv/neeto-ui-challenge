@@ -1,8 +1,10 @@
 import React from "react";
 
-import { Clock, MenuVertical } from "neetoicons";
+import { Clock } from "neetoicons";
 import { Avatar, Tag, Typography, Tooltip } from "neetoui";
 import { timeAgoInWords } from "utils";
+
+import DropMenu from "./DropMenu";
 
 const Note = ({
   title,
@@ -10,17 +12,14 @@ const Note = ({
   assignedContact,
   tag,
   createdOn,
-  onClick,
+  editClick,
 }) => (
-  <div
-    className="note-wrapper neeto-ui-border-gray-300 neeto-ui-shadow-s m-4 grid flex-1 divide-y border p-4 hover:scale-150"
-    onClick={onClick}
-  >
+  <div className="note-wrapper neeto-ui-border-gray-300 neeto-ui-shadow-s m-4 grid flex-1 divide-y border p-4 hover:scale-150">
     <div className="note-container mb-4">
       <div className="note-title flex justify-between">
         <Typography style="h4">{title}</Typography>
         <div className="cursor-pointer">
-          <MenuVertical size={17} />
+          <DropMenu onClick={editClick} />
         </div>
       </div>
       <div className="neeto-ui-text-gray-600 mt-1">

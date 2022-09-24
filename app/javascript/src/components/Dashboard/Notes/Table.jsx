@@ -22,7 +22,7 @@ const Table = ({
         {notes.map(note => (
           <Note
             key={note.id}
-            onClick={() => {
+            editClick={() => {
               setSelectedNote(note);
               setShowEditNote(true);
             }}
