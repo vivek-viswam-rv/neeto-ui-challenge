@@ -64,8 +64,8 @@ const Notes = () => {
           <Table
             fetchNotes={fetchNotes}
             notes={notes}
-            selectedNoteIds={selectedNoteIds}
-            setSelectedNoteIds={setSelectedNoteIds}
+            // selectedNoteIds={selectedNoteIds}
+            // setSelectedNoteIds={setSelectedNoteIds}
           />
         ) : (
           <EmptyState

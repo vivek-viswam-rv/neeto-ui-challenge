@@ -89,6 +89,7 @@ export const TAGS = [
 
 export const DUMMY_NOTES = [
   {
+    id: 0,
     title: "How to claim the warranty?",
     description:
       "This is something I found in the Figma design file. So please don't mind",
@@ -96,17 +97,19 @@ export const DUMMY_NOTES = [
     tag: 0,
   },
   {
+    id: 1,
     title: "Write a blog",
     description:
       "This is something I found in the Figma design file. So please don't mind",
-    assignedContact: 0,
+    assignedContact: 1,
     tag: 0,
   },
   {
+    id: 2,
     title: "Enjoy your time",
     description:
       "This is something I found in the Figma design file. So please don't mind",
-    assignedContact: 0,
+    assignedContact: 2,
     tag: 0,
   },
 ];
