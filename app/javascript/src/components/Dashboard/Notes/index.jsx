@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Button, PageLoader } from "neetoui";
@@ -6,11 +6,12 @@ import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
 
-import { DUMMY_NOTES } from "./constants";
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import NewNotePane from "./Pane/Create";
 import Table from "./Table";
+
+import { DashboardContext } from "..";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,8 @@ const Notes = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
-  const [notes, setNotes] = useState([]);
+
+  const { notes } = useContext(DashboardContext);
 
   useEffect(() => {
     fetchNotes();
@@ -28,7 +30,6 @@ const Notes = () => {
   const fetchNotes = () => {
     try {
       setLoading(true);
-      setNotes(DUMMY_NOTES);
     } catch (error) {
       logger.error(error);
     } finally {
