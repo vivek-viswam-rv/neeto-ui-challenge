@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Clock, MenuVertical } from "neetoicons";
-import { Avatar, Tag, Typography } from "neetoui";
+import { Avatar, Tag, Typography, Tooltip } from "neetoui";
 import { timeAgoInWords } from "utils";
 
 const Note = ({
@@ -36,7 +36,9 @@ const Note = ({
           <Clock size={17} />
         </div>
         <div className="mr-1">
-          <Typography style="body3">{timeAgoInWords(createdOn)}</Typography>
+          <Tooltip content={createdOn} position="bottom-end">
+            <Typography style="body3">{timeAgoInWords(createdOn)}</Typography>
+          </Tooltip>
         </div>
         <Avatar
           size="small"
