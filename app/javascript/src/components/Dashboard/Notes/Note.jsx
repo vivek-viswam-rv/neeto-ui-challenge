@@ -2,8 +2,16 @@ import React from "react";
 
 import { Clock, MenuVertical } from "neetoicons";
 import { Avatar, Tag, Typography } from "neetoui";
+import { timeAgoInWords } from "utils";
 
-const Note = ({ title, description, assignedContact, tag, onClick }) => (
+const Note = ({
+  title,
+  description,
+  assignedContact,
+  tag,
+  createdOn,
+  onClick,
+}) => (
   <div
     className="note-wrapper neeto-ui-border-gray-300 neeto-ui-shadow-s m-4 grid flex-1 divide-y border p-4 hover:scale-150"
     onClick={onClick}
@@ -28,7 +36,7 @@ const Note = ({ title, description, assignedContact, tag, onClick }) => (
           <Clock size={17} />
         </div>
         <div className="mr-1">
-          <Typography style="body3">Created 10 months ago</Typography>
+          <Typography style="body3">{timeAgoInWords(createdOn)}</Typography>
         </div>
         <Avatar
           size="small"

@@ -95,6 +95,7 @@ export const DUMMY_NOTES = [
       "This is something I found in the Figma design file. So please don't mind",
     assignedContact: 0,
     tag: 0,
+    createdOn: "September 24,2022",
   },
   {
     id: 1,
@@ -103,6 +104,7 @@ export const DUMMY_NOTES = [
       "This is something I found in the Figma design file. So please don't mind",
     assignedContact: 1,
     tag: 0,
+    createdOn: "September 24,2022",
   },
   {
     id: 2,
@@ -111,5 +113,6 @@ export const DUMMY_NOTES = [
       "This is something I found in the Figma design file. So please don't mind",
     assignedContact: 2,
     tag: 0,
+    createdOn: "September 24,2022",
   },
 ];
