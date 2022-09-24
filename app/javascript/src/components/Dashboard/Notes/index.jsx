@@ -11,6 +11,7 @@ import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import NewNotePane from "./Pane/Create";
 import Table from "./Table";
+// import { DUMMY_NOTES, DUMMY_CONTACTS, TAGS, ROLES } from "./constants";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);

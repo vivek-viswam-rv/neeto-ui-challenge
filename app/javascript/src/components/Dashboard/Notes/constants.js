@@ -24,3 +24,89 @@ export const NOTES_TABLE_COLUMN_DATA = [
     width: "70%",
   },
 ];
+
+export const ROLES = ["Owner", "User"];
+
+export const DUMMY_CONTACTS = [
+  {
+    firstName: "Oliver",
+    lastName: "Smith",
+    email: "oliver@example.com",
+    role: 0,
+  },
+  {
+    firstName: "James",
+    lastName: "Bond",
+    email: "bond@example.com",
+    role: 0,
+  },
+  {
+    firstName: "Oliver",
+    lastName: "Smith",
+    email: "oliver@example.com",
+    role: 0,
+  },
+  {
+    firstName: "James",
+    lastName: "Bond",
+    email: "bond@example.com",
+    role: 0,
+  },
+  {
+    firstName: "Oliver",
+    lastName: "Smith",
+    email: "oliver@example.com",
+    role: 0,
+  },
+  {
+    firstName: "James",
+    lastName: "Bond",
+    email: "bond@example.com",
+    role: 0,
+  },
+  {
+    firstName: "Oliver",
+    lastName: "Smith",
+    email: "oliver@example.com",
+    role: 0,
+  },
+  {
+    firstName: "James",
+    lastName: "Bond",
+    email: "bond@example.com",
+    role: 0,
+  },
+];
+
+export const TAGS = [
+  "Getting Started",
+  "Onboarding",
+  "User Flow",
+  "UX",
+  "Bugs",
+  "V2",
+];
+
+export const DUMMY_NOTES = [
+  {
+    title: "How to claim the warranty?",
+    description:
+      "This is something I found in the Figma design file. So please don't mind",
+    assignedContact: 0,
+    tag: 0,
+  },
+  {
+    title: "Write a blog",
+    description:
+      "This is something I found in the Figma design file. So please don't mind",
+    assignedContact: 0,
+    tag: 0,
+  },
+  {
+    title: "Enjoy your time",
+    description:
+      "This is something I found in the Figma design file. So please don't mind",
+    assignedContact: 0,
+    tag: 0,
+  },
+];
