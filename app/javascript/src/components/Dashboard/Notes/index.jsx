@@ -19,23 +19,22 @@ const Notes = () => {
   const [showNewNotePane, setShowNewNotePane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedNoteIds, setSelectedNoteIds] = useState([]);
+  const [selectedNoteId, setSelectedNoteId] = useState([]);
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    fetchNotes();
-    setNotes(NOTES);
-  }, []);
-
-  const fetchNotes = () => {
     try {
       setLoading(true);
+      setNotes(NOTES);
     } catch (error) {
       logger.error(error);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  const removeNote = () =>
+    setNotes(notes => notes.filter(note => note.id !== selectedNoteId));
 
   if (loading) {
     return <PageLoader />;
@@ -63,7 +62,11 @@ const Notes = () => {
           }}
         />
         {notes.length ? (
-          <Table fetchNotes={fetchNotes} notes={notes} />
+          <Table
+            notes={notes}
+            setSelectedNoteId={setSelectedNoteId}
+            setShowDeleteAlert={setShowDeleteAlert}
+          />
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
@@ -74,15 +77,12 @@ const Notes = () => {
           />
         )}
         <NewNotePane
-          fetchNotes={fetchNotes}
           setShowPane={setShowNewNotePane}
           showPane={showNewNotePane}
         />
         {showDeleteAlert && (
           <DeleteAlert
-            refetch={fetchNotes}
-            selectedNoteIds={selectedNoteIds}
-            setSelectedNoteIds={setSelectedNoteIds}
+            removeNote={removeNote}
             onClose={() => setShowDeleteAlert(false)}
           />
         )}

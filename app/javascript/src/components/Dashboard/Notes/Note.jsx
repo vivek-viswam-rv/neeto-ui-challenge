@@ -13,12 +13,17 @@ const Note = ({
   tag,
   createdOn,
   editClick,
+  deleteClick,
 }) => (
   <div className="note-wrapper neeto-ui-rounded-sm neeto-ui-border-gray-300 neeto-ui-shadow-xs m-4 grid flex-1 divide-y border p-4 hover:scale-150">
     <div className="note-container mb-4">
       <div className="note-title flex justify-between">
         <Typography style="h4">{title}</Typography>
-        <DropdownMenu className="cursor-pointer" handleEdit={editClick} />
+        <DropdownMenu
+          className="cursor-pointer"
+          handleDelete={deleteClick}
+          handleEdit={editClick}
+        />
       </div>
       <Typography className="neeto-ui-text-gray-600 mt-1" style="body2">
         {description}

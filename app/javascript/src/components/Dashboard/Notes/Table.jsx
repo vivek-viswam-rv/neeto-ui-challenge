@@ -5,7 +5,7 @@ import EditNotePane from "./Pane/Edit";
 
 import { TAGS, CONTACTS } from "../constants";
 
-const Table = ({ notes = [], fetchNotes }) => {
+const Table = ({ notes = [], setSelectedNoteId, setShowDeleteAlert }) => {
   const [showEditNote, setShowEditNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
 
@@ -15,6 +15,10 @@ const Table = ({ notes = [], fetchNotes }) => {
         {notes.map(note => (
           <Note
             key={note.id}
+            deleteClick={() => {
+              setSelectedNoteId(note.id);
+              setShowDeleteAlert(true);
+            }}
             editClick={() => {
               setSelectedNote(note);
               setShowEditNote(true);
@@ -26,7 +30,6 @@ const Table = ({ notes = [], fetchNotes }) => {
         ))}
       </div>
       <EditNotePane
-        fetchNotes={fetchNotes}
         note={selectedNote}
         setShowPane={setShowEditNote}
         showPane={showEditNote}
