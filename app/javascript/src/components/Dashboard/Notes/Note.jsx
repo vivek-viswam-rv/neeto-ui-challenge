@@ -4,7 +4,7 @@ import { Clock } from "neetoicons";
 import { Avatar, Tag, Typography, Tooltip } from "neetoui";
 import { timeAgoInWords } from "utils";
 
-import DropMenu from "./DropMenu";
+import DropdownMenu from "./DropdownMenu";
 
 const Note = ({
   title,
@@ -19,7 +19,7 @@ const Note = ({
       <div className="note-title flex justify-between">
         <Typography style="h4">{title}</Typography>
         <div className="cursor-pointer">
-          <DropMenu onClick={editClick} />
+          <DropdownMenu handleEdit={editClick} />
         </div>
       </div>
       <div className="neeto-ui-text-gray-600 mt-1">

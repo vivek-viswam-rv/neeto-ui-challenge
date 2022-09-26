@@ -1,6 +1,6 @@
 export const ROLES = ["Owner", "User"];
 
-export const DUMMY_CONTACTS = [
+export const CONTACTS = [
   {
     firstName: "Oliver",
     lastName: "Smith",
@@ -60,7 +60,7 @@ export const TAGS = [
   "V2",
 ];
 
-export const DUMMY_NOTES = [
+export const NOTES = [
   {
     id: 0,
     title: "How to claim the warranty?",
