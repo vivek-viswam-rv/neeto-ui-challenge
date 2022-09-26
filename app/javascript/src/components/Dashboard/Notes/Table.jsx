@@ -5,12 +5,7 @@ import EditNotePane from "./Pane/Edit";
 
 import { TAGS, CONTACTS } from "../constants";
 
-const Table = ({
-  notes = [],
-  fetchNotes,
-  setSelectedNoteId,
-  setShowDeleteAlert,
-}) => {
+const Table = ({ notes = [], setSelectedNoteId, setShowDeleteAlert }) => {
   const [showEditNote, setShowEditNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
 
@@ -35,7 +30,6 @@ const Table = ({
         ))}
       </div>
       <EditNotePane
-        fetchNotes={fetchNotes}
         note={selectedNote}
         setShowPane={setShowEditNote}
         showPane={showEditNote}

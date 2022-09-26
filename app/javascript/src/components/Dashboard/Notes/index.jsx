@@ -23,19 +23,16 @@ const Notes = () => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    fetchNotes();
-    setNotes(NOTES);
-  }, []);
-
-  const fetchNotes = () => {
     try {
       setLoading(true);
+      setNotes(NOTES);
     } catch (error) {
       logger.error(error);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
   const removeNote = () =>
     setNotes(notes => notes.filter(note => note.id !== selectedNoteId));
 
@@ -66,7 +63,6 @@ const Notes = () => {
         />
         {notes.length ? (
           <Table
-            fetchNotes={fetchNotes}
             notes={notes}
             setSelectedNoteId={setSelectedNoteId}
             setShowDeleteAlert={setShowDeleteAlert}
@@ -81,7 +77,6 @@ const Notes = () => {
           />
         )}
         <NewNotePane
-          fetchNotes={fetchNotes}
           setShowPane={setShowNewNotePane}
           showPane={showNewNotePane}
         />
