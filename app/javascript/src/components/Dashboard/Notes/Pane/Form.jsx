@@ -4,19 +4,17 @@ import { Formik, Form } from "formik";
 import { Button, Pane } from "neetoui";
 import { Input, Textarea } from "neetoui/formik";
 
-import notesApi from "apis/notes";
-
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
 
-const NoteForm = ({ onClose, note, isEdit }) => {
+const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async values => {
+  const handleSubmit = values => {
     try {
       if (isEdit) {
-        await notesApi.update(note.id, values);
+        handleNote(note.id, values);
       } else {
-        await notesApi.create(values);
+        handleNote(values);
       }
       onClose();
     } catch (err) {

@@ -33,6 +33,8 @@ const Notes = () => {
     }
   }, []);
 
+  const createNote = values => setNotes(notes => [...notes, values]);
+
   const removeNote = () =>
     setNotes(notes => notes.filter(note => note.id !== selectedNoteId));
 
@@ -64,6 +66,7 @@ const Notes = () => {
         {notes.length ? (
           <Table
             notes={notes}
+            setNotes={setNotes}
             setSelectedNoteId={setSelectedNoteId}
             setShowDeleteAlert={setShowDeleteAlert}
           />
@@ -77,6 +80,7 @@ const Notes = () => {
           />
         )}
         <NewNotePane
+          createNote={createNote}
           setShowPane={setShowNewNotePane}
           showPane={showNewNotePane}
         />

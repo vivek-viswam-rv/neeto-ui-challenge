@@ -5,9 +5,24 @@ import EditNotePane from "./Pane/Edit";
 
 import { TAGS, CONTACTS } from "../constants";
 
-const Table = ({ notes = [], setSelectedNoteId, setShowDeleteAlert }) => {
+const Table = ({
+  notes = [],
+  setNotes,
+  setSelectedNoteId,
+  setShowDeleteAlert,
+}) => {
   const [showEditNote, setShowEditNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
+
+  const editNote = (id, values) => {
+    setNotes(notes =>
+      notes.map(note => {
+        if (note.id === id) return values;
+
+        return note;
+      })
+    );
+  };
 
   return (
     <>
@@ -30,6 +45,7 @@ const Table = ({ notes = [], setSelectedNoteId, setShowDeleteAlert }) => {
         ))}
       </div>
       <EditNotePane
+        editNote={editNote}
         note={selectedNote}
         setShowPane={setShowEditNote}
         showPane={showEditNote}
