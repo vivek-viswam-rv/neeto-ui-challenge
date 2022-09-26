@@ -18,27 +18,23 @@ const Note = ({
     <div className="note-container mb-4">
       <div className="note-title flex justify-between">
         <Typography style="h4">{title}</Typography>
-        <div className="cursor-pointer">
-          <DropdownMenu handleEdit={editClick} />
-        </div>
+        <DropdownMenu className="cursor-pointer" handleEdit={editClick} />
       </div>
-      <div className="neeto-ui-text-gray-600 mt-1">
-        <Typography style="body2">{description}</Typography>
-      </div>
+      <Typography className="neeto-ui-text-gray-600 mt-1" style="body2">
+        {description}
+      </Typography>
     </div>
     <div className="note-footer grid grid-cols-3 pt-3">
       <div className="col-span-2 col-start-1">
         <Tag label={tag} />
       </div>
       <div className="flex justify-end">
-        <div className="mr-1">
-          <Clock size={17} />
-        </div>
-        <div className="mr-1">
-          <Tooltip content={createdOn} position="bottom-end">
-            <Typography style="body3">{timeAgoInWords(createdOn)}</Typography>
-          </Tooltip>
-        </div>
+        <Clock className="mr-1" size={17} />
+        <Tooltip content={createdOn} position="bottom-end">
+          <Typography className="mr-1" style="body3">
+            {timeAgoInWords(createdOn)}
+          </Typography>
+        </Tooltip>
         <Avatar
           size="small"
           user={{
