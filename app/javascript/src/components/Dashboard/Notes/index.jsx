@@ -19,7 +19,7 @@ const Notes = () => {
   const [showNewNotePane, setShowNewNotePane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedNoteIds, setSelectedNoteIds] = useState([]);
+  const [selectedNoteId, setSelectedNoteId] = useState([]);
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
@@ -36,6 +36,8 @@ const Notes = () => {
       setLoading(false);
     }
   };
+  const removeNote = () =>
+    setNotes(notes => notes.filter(note => note.id !== selectedNoteId));
 
   if (loading) {
     return <PageLoader />;
@@ -63,7 +65,12 @@ const Notes = () => {
           }}
         />
         {notes.length ? (
-          <Table fetchNotes={fetchNotes} notes={notes} />
+          <Table
+            fetchNotes={fetchNotes}
+            notes={notes}
+            setSelectedNoteId={setSelectedNoteId}
+            setShowDeleteAlert={setShowDeleteAlert}
+          />
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
@@ -80,9 +87,7 @@ const Notes = () => {
         />
         {showDeleteAlert && (
           <DeleteAlert
-            refetch={fetchNotes}
-            selectedNoteIds={selectedNoteIds}
-            setSelectedNoteIds={setSelectedNoteIds}
+            removeNote={removeNote}
             onClose={() => setShowDeleteAlert(false)}
           />
         )}
