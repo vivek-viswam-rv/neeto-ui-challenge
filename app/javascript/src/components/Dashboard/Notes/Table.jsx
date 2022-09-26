@@ -1,20 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import Note from "./Note";
 import EditNotePane from "./Pane/Edit";
 
-import { DashboardContext } from "..";
+import { TAGS, CONTACTS } from "../constants";
 
-const Table = ({
-  // selectedNoteIds,
-  // setSelectedNoteIds,
-  notes = [],
-  fetchNotes,
-}) => {
+const Table = ({ notes = [], fetchNotes }) => {
   const [showEditNote, setShowEditNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
-
-  const { tags, contacts } = useContext(DashboardContext);
 
   return (
     <>
@@ -27,8 +20,8 @@ const Table = ({
               setShowEditNote(true);
             }}
             {...note}
-            assignedContact={contacts[note.assignedContact]}
-            tag={tags[note.tag]}
+            assignedContact={CONTACTS[note.assignedContact]}
+            tag={TAGS[note.tag]}
           />
         ))}
       </div>

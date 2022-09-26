@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Button, PageLoader } from "neetoui";
@@ -11,7 +11,7 @@ import Menu from "./Menu";
 import NewNotePane from "./Pane/Create";
 import Table from "./Table";
 
-import { DashboardContext } from "..";
+import { NOTES } from "../constants";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
@@ -20,11 +20,11 @@ const Notes = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedNoteIds, setSelectedNoteIds] = useState([]);
-
-  const { notes } = useContext(DashboardContext);
+  const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     fetchNotes();
+    setNotes(NOTES);
   }, []);
 
   const fetchNotes = () => {
@@ -46,7 +46,7 @@ const Notes = () => {
       <Menu showMenu={showMenu} />
       <Container>
         <Header
-          menuBarToggle={() => setShowMenu(oldShowState => !oldShowState)}
+          menuBarToggle={() => setShowMenu(showMenu => !showMenu)}
           title="All Notes"
           actionBlock={
             <Button
@@ -63,12 +63,7 @@ const Notes = () => {
           }}
         />
         {notes.length ? (
-          <Table
-            fetchNotes={fetchNotes}
-            notes={notes}
-            // selectedNoteIds={selectedNoteIds}
-            // setSelectedNoteIds={setSelectedNoteIds}
-          />
+          <Table fetchNotes={fetchNotes} notes={notes} />
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
