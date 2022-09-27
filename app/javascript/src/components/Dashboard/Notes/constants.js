@@ -1,3 +1,4 @@
+import slugify from "slugify";
 import * as yup from "yup";
 
 import { TAGS } from "../constants";
@@ -18,7 +19,7 @@ export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
     .of(
       yup.object().shape({
         label: yup.string().oneOf(TAGS),
-        value: yup.string().oneOf(TAGS),
+        value: yup.string().oneOf(TAGS.map(slugify)),
       })
     )
     .min(1)

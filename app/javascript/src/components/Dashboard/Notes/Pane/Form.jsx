@@ -16,8 +16,8 @@ const contacts = CONTACTS.map(contact =>
 );
 
 const parseValues = values => {
-  const assignedContact = values.assignedContact.value;
-  const tags = values.tags.map(tag => tag.value);
+  const assignedContact = values.assignedContact.label;
+  const tags = values.tags.map(tag => tag.label);
 
   return { ...values, tags, assignedContact };
 };
