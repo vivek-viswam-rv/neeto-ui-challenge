@@ -13,42 +13,6 @@ export const CONTACTS = [
     email: "bond@example.com",
     role: 0,
   },
-  {
-    firstName: "Oliver",
-    lastName: "Smith",
-    email: "oliver@example.com",
-    role: 0,
-  },
-  {
-    firstName: "James",
-    lastName: "Bond",
-    email: "bond@example.com",
-    role: 0,
-  },
-  {
-    firstName: "Oliver",
-    lastName: "Smith",
-    email: "oliver@example.com",
-    role: 0,
-  },
-  {
-    firstName: "James",
-    lastName: "Bond",
-    email: "bond@example.com",
-    role: 0,
-  },
-  {
-    firstName: "Oliver",
-    lastName: "Smith",
-    email: "oliver@example.com",
-    role: 0,
-  },
-  {
-    firstName: "James",
-    lastName: "Bond",
-    email: "bond@example.com",
-    role: 0,
-  },
 ];
 
 export const TAGS = [
@@ -68,7 +32,8 @@ export const NOTES = [
       "This is something I found in the Figma design file. So please don't mind",
     assignedContact: "Oliver Smith",
     tags: ["Getting Started"],
-    createdOn: "September 24,2022",
+    modifiedOn: "September 24,2022",
+    isModified: false,
   },
   {
     id: 1,
@@ -77,7 +42,8 @@ export const NOTES = [
       "This is something I found in the Figma design file. So please don't mind",
     assignedContact: "James Bond",
     tags: ["Getting Started"],
-    createdOn: "September 24,2022",
+    modifiedOn: "September 24,2022",
+    isModified: false,
   },
   {
     id: 2,
@@ -86,6 +52,7 @@ export const NOTES = [
       "This is something I found in the Figma design file. So please don't mind",
     assignedContact: "Oliver Smith",
     tags: ["Getting Started"],
-    createdOn: "September 24,2022",
+    modifiedOn: "September 24,2022",
+    isModified: false,
   },
 ];

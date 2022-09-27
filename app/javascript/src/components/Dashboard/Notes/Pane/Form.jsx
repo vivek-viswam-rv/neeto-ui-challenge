@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 
 import { Formik, Form } from "formik";
+import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 
 import { CONTACTS, TAGS } from "components/Dashboard/constants";
+import { buildSelectOption } from "utils/index";
 
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
 
-const formatTags = tags =>
-  tags.map(tag => ({
-    label: tag,
-    value: tag,
-  }));
+const tags = TAGS.map(buildSelectOption);
+const contacts = CONTACTS.map(contact =>
+  buildSelectOption(`${contact.firstName} ${contact.lastName}`)
+);
 
 const parseValues = values => {
   const assignedContact = values.assignedContact.value;
@@ -21,18 +22,14 @@ const parseValues = values => {
   return { ...values, tags, assignedContact };
 };
 
-const tags = formatTags(TAGS);
-
 const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = values => {
     try {
-      if (isEdit) {
-        handleNote(note.id, parseValues(values));
-      } else {
-        handleNote(parseValues(values));
-      }
+      isEdit
+        ? handleNote(note.id, parseValues(values))
+        : handleNote(parseValues(values));
       onClose();
     } catch (err) {
       logger.error(err);
@@ -41,10 +38,18 @@ const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
 
   return (
     <Formik
-      initialValues={isEdit ? { ...note, tags: formatTags(note.tags) } : note}
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={NOTES_FORM_VALIDATION_SCHEMA}
+      initialValues={
+        isEdit
+          ? {
+              ...note,
+              assignedContact: buildSelectOption(note.assignedContact),
+              tags: note.tags.map(buildSelectOption),
+            }
+          : note
+      }
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
@@ -68,15 +73,8 @@ const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
               className="w-full flex-grow-0"
               label="Assigned Contact"
               name="assignedContact"
+              options={contacts}
               placeholder="Select a contact"
-              options={CONTACTS.map(contact => {
-                const contactLabel = `${contact.firstName} ${contact.lastName}`;
-
-                return {
-                  label: contactLabel,
-                  value: contactLabel,
-                };
-              })}
             />
             <Select
               isMulti
@@ -86,20 +84,27 @@ const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
               label="Tags"
               name="tags"
               options={tags}
-              placeholder="Select a tag"
+              placeholder="Select tags"
             />
           </Pane.Body>
           <Pane.Footer>
             <Button
               className="mr-3"
               disabled={isSubmitting}
+              icon={Check}
+              iconPosition="right"
               label={isEdit ? "Update" : "Save changes"}
               loading={isSubmitting}
               style="primary"
               type="submit"
               onClick={() => setSubmitted(true)}
             />
-            <Button label="Cancel" style="text" onClick={onClose} />
+            <Button
+              label="Cancel"
+              style="text"
+              type="reset"
+              onClick={onClose}
+            />
           </Pane.Footer>
         </Form>
       )}

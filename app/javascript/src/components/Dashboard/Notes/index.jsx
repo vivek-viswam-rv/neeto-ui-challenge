@@ -35,7 +35,10 @@ const Notes = () => {
   }, []);
 
   const createNote = values =>
-    setNotes(notes => [...notes, { ...values, createdOn: getTimeStamp() }]);
+    setNotes(notes => [
+      ...notes,
+      { ...values, modifiedOn: getTimeStamp(), isModified: false },
+    ]);
 
   const removeNote = () =>
     setNotes(notes => notes.filter(note => note.id !== selectedNoteId));
