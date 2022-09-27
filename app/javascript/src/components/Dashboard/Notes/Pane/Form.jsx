@@ -2,7 +2,9 @@ import React, { useState } from "react";
 
 import { Formik, Form } from "formik";
 import { Button, Pane } from "neetoui";
-import { Input, Textarea } from "neetoui/formik";
+import { Input, Select } from "neetoui/formik";
+
+import { CONTACTS, TAGS } from "components/Dashboard/constants";
 
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
 
@@ -39,12 +41,35 @@ const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
               label="Title"
               name="title"
             />
-            <Textarea
+            <Input
               required
               className="w-full flex-grow-0"
               label="Description"
               name="description"
-              rows={8}
+            />
+            <Select
+              isSearchable
+              required
+              className="w-full flex-grow-0"
+              label="Assigned Contact"
+              name="assignedContact"
+              placeholder="Select a contact"
+              options={CONTACTS.map((contact, idx) => ({
+                label: `${contact.firstName} ${contact.lastName}`,
+                value: idx,
+              }))}
+            />
+            <Select
+              isSearchable
+              required
+              className="w-full flex-grow-0"
+              label="Tag"
+              name="tag"
+              placeholder="Select a tag"
+              options={TAGS.map((tag, idx) => ({
+                label: tag,
+                value: idx,
+              }))}
             />
           </Pane.Body>
           <Pane.Footer>
