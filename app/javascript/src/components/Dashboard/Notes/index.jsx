@@ -5,6 +5,7 @@ import { Button, PageLoader } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
+import { getTimeStamp } from "utils/index";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
@@ -33,7 +34,8 @@ const Notes = () => {
     }
   }, []);
 
-  const createNote = values => setNotes(notes => [...notes, values]);
+  const createNote = values =>
+    setNotes(notes => [...notes, { ...values, createdOn: getTimeStamp() }]);
 
   const removeNote = () =>
     setNotes(notes => notes.filter(note => note.id !== selectedNoteId));

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { getTimeStamp } from "utils/index";
+
 import Note from "./Note";
 import EditNotePane from "./Pane/Edit";
 
@@ -15,7 +17,7 @@ const Table = ({
   const editNote = (id, values) => {
     setNotes(notes =>
       notes.map(note => {
-        if (note.id === id) return values;
+        if (note.id === id) return { ...values, createdOn: getTimeStamp() };
 
         return note;
       })

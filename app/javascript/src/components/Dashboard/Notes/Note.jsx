@@ -39,7 +39,7 @@ const Note = ({
         <Clock className="mr-1" size={17} />
         <Tooltip content={createdOn} position="bottom-end">
           <Typography className="mr-1" style="body3">
-            {timeAgoInWords(createdOn)}
+            Created {timeAgoInWords(createdOn)}
           </Typography>
         </Tooltip>
         <Avatar
