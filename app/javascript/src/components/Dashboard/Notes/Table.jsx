@@ -1,13 +1,30 @@
 import React, { useState } from "react";
 
+import { getTimeStamp } from "utils/index";
+
 import Note from "./Note";
 import EditNotePane from "./Pane/Edit";
 
-import { TAGS, CONTACTS } from "../constants";
-
-const Table = ({ notes = [], setSelectedNoteId, setShowDeleteAlert }) => {
+const Table = ({
+  notes = [],
+  setNotes,
+  setSelectedNoteId,
+  setShowDeleteAlert,
+}) => {
   const [showEditNote, setShowEditNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
+
+  const editNote = (id, values) => {
+    setNotes(notes =>
+      notes.map(note => {
+        if (note.id === id) {
+          return { ...values, lastUpdated: getTimeStamp(), isModified: true };
+        }
+
+        return note;
+      })
+    );
+  };
 
   return (
     <>
@@ -24,12 +41,11 @@ const Table = ({ notes = [], setSelectedNoteId, setShowDeleteAlert }) => {
               setShowEditNote(true);
             }}
             {...note}
-            assignedContact={CONTACTS[note.assignedContact]}
-            tag={TAGS[note.tag]}
           />
         ))}
       </div>
       <EditNotePane
+        editNote={editNote}
         note={selectedNote}
         setShowPane={setShowEditNote}
         showPane={showEditNote}

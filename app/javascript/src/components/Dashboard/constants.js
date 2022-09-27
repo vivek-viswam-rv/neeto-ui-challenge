@@ -13,42 +13,6 @@ export const CONTACTS = [
     email: "bond@example.com",
     role: 0,
   },
-  {
-    firstName: "Oliver",
-    lastName: "Smith",
-    email: "oliver@example.com",
-    role: 0,
-  },
-  {
-    firstName: "James",
-    lastName: "Bond",
-    email: "bond@example.com",
-    role: 0,
-  },
-  {
-    firstName: "Oliver",
-    lastName: "Smith",
-    email: "oliver@example.com",
-    role: 0,
-  },
-  {
-    firstName: "James",
-    lastName: "Bond",
-    email: "bond@example.com",
-    role: 0,
-  },
-  {
-    firstName: "Oliver",
-    lastName: "Smith",
-    email: "oliver@example.com",
-    role: 0,
-  },
-  {
-    firstName: "James",
-    lastName: "Bond",
-    email: "bond@example.com",
-    role: 0,
-  },
 ];
 
 export const TAGS = [
@@ -66,26 +30,29 @@ export const NOTES = [
     title: "How to claim the warranty?",
     description:
       "This is something I found in the Figma design file. So please don't mind",
-    assignedContact: 0,
-    tag: 0,
-    createdOn: "September 24,2022",
+    assignedContact: "Oliver Smith",
+    tags: ["Getting Started"],
+    lastUpdated: "September 24,2022",
+    isModified: false,
   },
   {
     id: 1,
     title: "Write a blog",
     description:
       "This is something I found in the Figma design file. So please don't mind",
-    assignedContact: 1,
-    tag: 0,
-    createdOn: "September 24,2022",
+    assignedContact: "James Bond",
+    tags: ["Getting Started"],
+    lastUpdated: "September 24,2022",
+    isModified: false,
   },
   {
     id: 2,
     title: "Enjoy your time",
     description:
       "This is something I found in the Figma design file. So please don't mind",
-    assignedContact: 2,
-    tag: 0,
-    createdOn: "September 24,2022",
+    assignedContact: "Oliver Smith",
+    tags: ["Getting Started"],
+    lastUpdated: "September 24,2022",
+    isModified: false,
   },
 ];

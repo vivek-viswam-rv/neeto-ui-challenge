@@ -10,8 +10,9 @@ const Note = ({
   title,
   description,
   assignedContact,
-  tag,
-  createdOn,
+  tags,
+  lastUpdated,
+  isModified,
   editClick,
   deleteClick,
 }) => (
@@ -31,19 +32,22 @@ const Note = ({
     </div>
     <div className="note-footer grid grid-cols-3 pt-3">
       <div className="col-span-2 col-start-1">
-        <Tag label={tag} />
+        {tags.map((tag, idx) => (
+          <Tag className="m-1" key={idx} label={tag} />
+        ))}
       </div>
       <div className="flex justify-end">
         <Clock className="mr-1" size={17} />
-        <Tooltip content={createdOn} position="bottom-end">
+        <Tooltip content={lastUpdated} position="bottom-end">
           <Typography className="mr-1" style="body3">
-            {timeAgoInWords(createdOn)}
+            {isModified ? "Modified " : "Created "}
+            {timeAgoInWords(lastUpdated)}
           </Typography>
         </Tooltip>
         <Avatar
           size="small"
           user={{
-            name: `${assignedContact.firstName} ${assignedContact.lastName}`,
+            name: assignedContact,
           }}
         />
       </div>
