@@ -11,7 +11,7 @@ const Note = ({
   description,
   assignedContact,
   tags,
-  modifiedOn,
+  lastUpdated,
   isModified,
   editClick,
   deleteClick,
@@ -38,10 +38,10 @@ const Note = ({
       </div>
       <div className="flex justify-end">
         <Clock className="mr-1" size={17} />
-        <Tooltip content={modifiedOn} position="bottom-end">
+        <Tooltip content={lastUpdated} position="bottom-end">
           <Typography className="mr-1" style="body3">
             {isModified ? "Modified " : "Created "}
-            {timeAgoInWords(modifiedOn)}
+            {timeAgoInWords(lastUpdated)}
           </Typography>
         </Tooltip>
         <Avatar

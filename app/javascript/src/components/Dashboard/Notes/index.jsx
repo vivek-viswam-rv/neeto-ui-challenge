@@ -37,7 +37,7 @@ const Notes = () => {
   const createNote = values =>
     setNotes(notes => [
       ...notes,
-      { ...values, modifiedOn: getTimeStamp(), isModified: false },
+      { ...values, lastUpdated: getTimeStamp(), isModified: false },
     ]);
 
   const removeNote = () =>

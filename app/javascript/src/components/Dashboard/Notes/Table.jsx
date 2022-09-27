@@ -18,7 +18,7 @@ const Table = ({
     setNotes(notes =>
       notes.map(note => {
         if (note.id === id) {
-          return { ...values, modifiedOn: getTimeStamp(), isModified: true };
+          return { ...values, lastUpdated: getTimeStamp(), isModified: true };
         }
 
         return note;

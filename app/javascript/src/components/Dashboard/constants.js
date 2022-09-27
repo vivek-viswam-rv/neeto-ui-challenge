@@ -32,7 +32,7 @@ export const NOTES = [
       "This is something I found in the Figma design file. So please don't mind",
     assignedContact: "Oliver Smith",
     tags: ["Getting Started"],
-    modifiedOn: "September 24,2022",
+    lastUpdated: "September 24,2022",
     isModified: false,
   },
   {
@@ -42,7 +42,7 @@ export const NOTES = [
       "This is something I found in the Figma design file. So please don't mind",
     assignedContact: "James Bond",
     tags: ["Getting Started"],
-    modifiedOn: "September 24,2022",
+    lastUpdated: "September 24,2022",
     isModified: false,
   },
   {
@@ -52,7 +52,7 @@ export const NOTES = [
       "This is something I found in the Figma design file. So please don't mind",
     assignedContact: "Oliver Smith",
     tags: ["Getting Started"],
-    modifiedOn: "September 24,2022",
+    lastUpdated: "September 24,2022",
     isModified: false,
   },
 ];
