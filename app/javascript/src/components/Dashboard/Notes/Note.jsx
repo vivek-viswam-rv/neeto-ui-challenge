@@ -32,7 +32,7 @@ const Note = ({
     <div className="note-footer grid grid-cols-3 pt-3">
       <div className="col-span-2 col-start-1">
         {tags.map((tag, idx) => (
-          <Tag key={idx} label={tag} />
+          <Tag className="m-1" key={idx} label={tag} />
         ))}
       </div>
       <div className="flex justify-end">

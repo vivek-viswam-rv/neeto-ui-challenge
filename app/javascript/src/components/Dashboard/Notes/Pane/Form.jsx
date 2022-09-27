@@ -8,28 +8,36 @@ import { CONTACTS, TAGS } from "components/Dashboard/constants";
 
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
 
+const formatTags = tags =>
+  tags.map(tag => ({
+    label: tag,
+    value: tag,
+  }));
+
+const parseValues = values => {
+  const assignedContact = values.assignedContact.value;
+  const tags = values.tags.map(tag => tag.value);
+
+  return { ...values, tags, assignedContact };
+};
+
+const tags = formatTags(TAGS);
+
 const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = values => {
     try {
       if (isEdit) {
-        handleNote(note.id, values);
+        handleNote(note.id, parseValues(values));
       } else {
-        handleNote(values);
+        handleNote(parseValues(values));
       }
       onClose();
     } catch (err) {
       logger.error(err);
     }
   };
-  const formatTags = tags =>
-    tags.map(tag => ({
-      label: tag,
-      value: tag,
-    }));
-
-  const tags = formatTags(TAGS);
 
   return (
     <Formik
