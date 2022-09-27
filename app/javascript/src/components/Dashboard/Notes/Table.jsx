@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import Note from "./Note";
 import EditNotePane from "./Pane/Edit";
 
-import { TAGS, CONTACTS } from "../constants";
-
 const Table = ({
   notes = [],
   setNotes,
@@ -39,8 +37,6 @@ const Table = ({
               setShowEditNote(true);
             }}
             {...note}
-            assignedContact={CONTACTS[note.assignedContact]}
-            tag={TAGS[note.tag]}
           />
         ))}
       </div>

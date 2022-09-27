@@ -10,7 +10,7 @@ const Note = ({
   title,
   description,
   assignedContact,
-  tag,
+  tags,
   createdOn,
   editClick,
   deleteClick,
@@ -31,7 +31,9 @@ const Note = ({
     </div>
     <div className="note-footer grid grid-cols-3 pt-3">
       <div className="col-span-2 col-start-1">
-        <Tag label={tag} />
+        {tags.map((tag, idx) => (
+          <Tag key={idx} label={tag} />
+        ))}
       </div>
       <div className="flex justify-end">
         <Clock className="mr-1" size={17} />
@@ -43,7 +45,7 @@ const Note = ({
         <Avatar
           size="small"
           user={{
-            name: `${assignedContact.firstName} ${assignedContact.lastName}`,
+            name: assignedContact,
           }}
         />
       </div>

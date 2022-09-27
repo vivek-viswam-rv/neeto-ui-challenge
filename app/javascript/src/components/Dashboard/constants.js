@@ -66,8 +66,8 @@ export const NOTES = [
     title: "How to claim the warranty?",
     description:
       "This is something I found in the Figma design file. So please don't mind",
-    assignedContact: 0,
-    tag: 0,
+    assignedContact: "Oliver Smith",
+    tags: ["Getting Started"],
     createdOn: "September 24,2022",
   },
   {
@@ -75,8 +75,8 @@ export const NOTES = [
     title: "Write a blog",
     description:
       "This is something I found in the Figma design file. So please don't mind",
-    assignedContact: 1,
-    tag: 0,
+    assignedContact: "James Bond",
+    tags: ["Getting Started"],
     createdOn: "September 24,2022",
   },
   {
@@ -84,8 +84,8 @@ export const NOTES = [
     title: "Enjoy your time",
     description:
       "This is something I found in the Figma design file. So please don't mind",
-    assignedContact: 2,
-    tag: 0,
+    assignedContact: "Oliver Smith",
+    tags: ["Getting Started"],
     createdOn: "September 24,2022",
   },
 ];

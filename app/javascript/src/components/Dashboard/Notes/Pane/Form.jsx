@@ -23,10 +23,17 @@ const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
       logger.error(err);
     }
   };
+  const formatTags = tags =>
+    tags.map(tag => ({
+      label: tag,
+      value: tag,
+    }));
+
+  const tags = formatTags(TAGS);
 
   return (
     <Formik
-      initialValues={note}
+      initialValues={isEdit ? { ...note, tags: formatTags(note.tags) } : note}
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={NOTES_FORM_VALIDATION_SCHEMA}
@@ -54,22 +61,24 @@ const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
               label="Assigned Contact"
               name="assignedContact"
               placeholder="Select a contact"
-              options={CONTACTS.map((contact, idx) => ({
-                label: `${contact.firstName} ${contact.lastName}`,
-                value: idx,
-              }))}
+              options={CONTACTS.map(contact => {
+                const contactLabel = `${contact.firstName} ${contact.lastName}`;
+
+                return {
+                  label: contactLabel,
+                  value: contactLabel,
+                };
+              })}
             />
             <Select
+              isMulti
               isSearchable
               required
               className="w-full flex-grow-0"
-              label="Tag"
-              name="tag"
+              label="Tags"
+              name="tags"
+              options={tags}
               placeholder="Select a tag"
-              options={TAGS.map((tag, idx) => ({
-                label: tag,
-                value: idx,
-              }))}
             />
           </Pane.Body>
           <Pane.Footer>
