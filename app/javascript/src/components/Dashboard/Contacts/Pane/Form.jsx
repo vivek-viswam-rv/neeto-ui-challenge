@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Formik, Form } from "formik";
+import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input } from "neetoui/formik";
@@ -9,7 +9,7 @@ import { buildSelectOption, parseContactValues } from "utils/index";
 
 import { CONTACTS_FORM_VALIDATION_SCHEMA } from "../constants";
 
-const ContactForm = ({
+const Form = ({
   onClose,
   contact,
   isEdit,
@@ -46,7 +46,7 @@ const ContactForm = ({
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
-        <Form className="w-full">
+        <FormikForm className="w-full">
           <Pane.Body className="space-y-6">
             <Input
               required
@@ -74,10 +74,10 @@ const ContactForm = ({
               onClick={onClose}
             />
           </Pane.Footer>
-        </Form>
+        </FormikForm>
       )}
     </Formik>
   );
 };
 
-export default ContactForm;
+export default Form;
