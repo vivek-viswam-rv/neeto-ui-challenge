@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { getTimeStamp } from "utils/index";
 
 import Note from "./Note";
-import EditNotePane from "./Pane/Edit";
+import Edit from "./Pane/Edit";
 
 const Table = ({
   notes = [],
@@ -14,7 +14,7 @@ const Table = ({
   const [showEditNote, setShowEditNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
 
-  const editNote = (id, values) => {
+  const updateNote = (id, values) => {
     setNotes(notes =>
       notes.map(note => {
         if (note.id === id) {
@@ -44,11 +44,12 @@ const Table = ({
           />
         ))}
       </div>
-      <EditNotePane
-        editNote={editNote}
+      <Edit
+        isEdit
         note={selectedNote}
         setShowPane={setShowEditNote}
         showPane={showEditNote}
+        updateNote={updateNote}
       />
     </>
   );

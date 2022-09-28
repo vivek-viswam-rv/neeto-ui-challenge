@@ -1,33 +1,31 @@
 import React, { useState } from "react";
 
-import { Formik, Form } from "formik";
+import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 
-import { CONTACTS, TAGS } from "components/Dashboard/constants";
 import { buildSelectOption, parseNoteValues } from "utils/index";
 
-import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
-
-const TAG_OPTIONS = TAGS.map(buildSelectOption);
-const CONTACT_OPTIONS = CONTACTS.map(contact =>
-  buildSelectOption(`${contact.firstName} ${contact.lastName}`)
-);
+import {
+  CONTACT_OPTIONS,
+  NOTES_FORM_VALIDATION_SCHEMA,
+  TAG_OPTIONS,
+} from "../constants";
 
 const NoteForm = ({
   onClose,
   note,
   isEdit,
   createNote = null,
-  editNote = null,
+  updateNote = null,
 }) => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = values => {
     try {
       isEdit
-        ? editNote(note.id, parseNoteValues(values))
+        ? updateNote(note.id, parseNoteValues(values))
         : createNote(parseNoteValues(values));
       onClose();
     } catch (err) {
@@ -52,7 +50,7 @@ const NoteForm = ({
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
-        <Form className="w-full">
+        <FormikForm className="w-full">
           <Pane.Body className="space-y-6">
             <Input
               required
@@ -105,7 +103,7 @@ const NoteForm = ({
               onClick={onClose}
             />
           </Pane.Footer>
-        </Form>
+        </FormikForm>
       )}
     </Formik>
   );

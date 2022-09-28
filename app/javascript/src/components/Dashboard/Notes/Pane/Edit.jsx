@@ -4,7 +4,7 @@ import { Pane, Typography } from "neetoui";
 
 import Form from "./Form";
 
-const EditNotePane = ({ showPane, setShowPane, note, editNote }) => {
+const Edit = ({ showPane, setShowPane, note, updateNote }) => {
   const onClose = () => setShowPane(false);
 
   return (
@@ -14,9 +14,9 @@ const EditNotePane = ({ showPane, setShowPane, note, editNote }) => {
           Edit note
         </Typography>
       </Pane.Header>
-      <Form isEdit editNote={editNote} note={note} onClose={onClose} />
+      <Form isEdit note={note} updateNote={updateNote} onClose={onClose} />
     </Pane>
   );
 };
 
-export default EditNotePane;
+export default Edit;
