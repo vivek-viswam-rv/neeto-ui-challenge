@@ -37,7 +37,7 @@ const Contacts = () => {
   }
 
   return (
-    <div className="flex w-full">
+    <div className="flex overflow-hidden">
       <Menu showMenu={showMenu} />
       <Container>
         <Header
@@ -58,7 +58,7 @@ const Contacts = () => {
           }}
         />
         {contacts.length ? (
-          <Table contacts={contacts} setShowDeleteAlert={setShowDeleteAlert} />
+          <Table contacts={contacts} />
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
