@@ -9,7 +9,7 @@ import { getTimeStamp } from "utils/index";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
-import NewNotePane from "./Pane/Create";
+import Create from "./Pane/Create";
 import Table from "./Table";
 
 import { NOTES } from "../constants";
@@ -84,7 +84,7 @@ const Notes = () => {
             title="Looks like you don't have any notes!"
           />
         )}
-        <NewNotePane
+        <Create
           createNote={createNote}
           setShowPane={setShowNewNotePane}
           showPane={showNewNotePane}
