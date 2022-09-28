@@ -3,17 +3,11 @@ import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
-import { Input, Select } from "neetoui/formik";
+import { Input } from "neetoui/formik";
 
-import { CONTACTS, TAGS } from "components/Dashboard/constants";
 import { buildSelectOption, parseContactValues } from "utils/index";
 
 import { CONTACTS_FORM_VALIDATION_SCHEMA } from "../constants";
-
-const TAG_OPTIONS = TAGS.map(buildSelectOption);
-const CONTACT_OPTIONS = CONTACTS.map(contact =>
-  buildSelectOption(`${contact.firstName} ${contact.lastName}`)
-);
 
 const ContactForm = ({
   onClose,
@@ -57,33 +51,8 @@ const ContactForm = ({
             <Input
               required
               className="w-full flex-grow-0"
-              label="Title"
-              name="title"
-            />
-            <Input
-              required
-              className="w-full flex-grow-0"
-              label="Description"
-              name="description"
-            />
-            <Select
-              isSearchable
-              required
-              className="w-full flex-grow-0"
-              label="Assigned Contact"
-              name="assignedContact"
-              options={CONTACT_OPTIONS}
-              placeholder="Select a contact"
-            />
-            <Select
-              isMulti
-              isSearchable
-              required
-              className="w-full flex-grow-0"
-              label="Tags"
-              name="tags"
-              options={TAG_OPTIONS}
-              placeholder="Select tags"
+              label="First Name"
+              name="firstName"
             />
           </Pane.Body>
           <Pane.Footer>

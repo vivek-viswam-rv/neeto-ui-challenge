@@ -8,11 +8,11 @@ const Menu = ({ showMenu }) => {
   const [isSearchCollapsed, setIsSearchCollapsed] = useState(true);
 
   return (
-    <MenuBar showMenu={showMenu} title="Notes">
-      <MenuBar.Block active count={13} label="All" />
-      <MenuBar.Block count={2} label="Users" />
-      <MenuBar.Block count={7} label="Leads" />
-      <MenuBar.Block count={4} label="Visitors" />
+    <MenuBar showMenu={showMenu} title="Contacts">
+      <MenuBar.Block active count={0} label="All" />
+      <MenuBar.Block count={0} label="Archived" />
+      <MenuBar.Block count={0} label="Completed" />
+      <MenuBar.Block count={0} label="Phase 2" />
       <MenuBar.SubTitle
         iconProps={[
           {
@@ -35,9 +35,6 @@ const Menu = ({ showMenu }) => {
         collapse={isSearchCollapsed}
         onCollapse={() => setIsSearchCollapsed(true)}
       />
-      <MenuBar.Block count={80} label="Europe" />
-      <MenuBar.Block count={60} label="Middle-East" />
-      <MenuBar.Block count={60} label="Asia" />
       <MenuBar.SubTitle
         iconProps={[
           {
@@ -60,9 +57,6 @@ const Menu = ({ showMenu }) => {
           Tags
         </Typography>
       </MenuBar.SubTitle>
-      <MenuBar.Block count={80} label="Sales" />
-      <MenuBar.Block count={60} label="Finance" />
-      <MenuBar.Block count={60} label="User Experience" />
     </MenuBar>
   );
 };
