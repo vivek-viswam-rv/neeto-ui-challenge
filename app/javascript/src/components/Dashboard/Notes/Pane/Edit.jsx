@@ -14,7 +14,7 @@ const EditNotePane = ({ showPane, setShowPane, note, editNote }) => {
           Edit note
         </Typography>
       </Pane.Header>
-      <Form isEdit handleNote={editNote} note={note} onClose={onClose} />
+      <Form isEdit editNote={editNote} note={note} onClose={onClose} />
     </Pane>
   );
 };

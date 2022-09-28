@@ -11,3 +11,10 @@ export const buildSelectOption = item => ({
   label: item,
   value: slugify(item),
 });
+
+export const parseNoteValues = values => {
+  const assignedContact = values.assignedContact.label;
+  const tags = values.tags.map(tag => tag.label);
+
+  return { ...values, tags, assignedContact };
+};

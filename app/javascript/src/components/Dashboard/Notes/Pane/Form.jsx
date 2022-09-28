@@ -6,30 +6,29 @@ import { Button, Pane } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 
 import { CONTACTS, TAGS } from "components/Dashboard/constants";
-import { buildSelectOption } from "utils/index";
+import { buildSelectOption, parseNoteValues } from "utils/index";
 
 import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
 
-const tags = TAGS.map(buildSelectOption);
-const contacts = CONTACTS.map(contact =>
+const TAG_OPTIONS = TAGS.map(buildSelectOption);
+const CONTACT_OPTIONS = CONTACTS.map(contact =>
   buildSelectOption(`${contact.firstName} ${contact.lastName}`)
 );
 
-const parseValues = values => {
-  const assignedContact = values.assignedContact.label;
-  const tags = values.tags.map(tag => tag.label);
-
-  return { ...values, tags, assignedContact };
-};
-
-const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
+const NoteForm = ({
+  onClose,
+  note,
+  isEdit,
+  createNote = null,
+  editNote = null,
+}) => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = values => {
     try {
       isEdit
-        ? handleNote(note.id, parseValues(values))
-        : handleNote(parseValues(values));
+        ? editNote(note.id, parseNoteValues(values))
+        : createNote(parseNoteValues(values));
       onClose();
     } catch (err) {
       logger.error(err);
@@ -73,7 +72,7 @@ const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
               className="w-full flex-grow-0"
               label="Assigned Contact"
               name="assignedContact"
-              options={contacts}
+              options={CONTACT_OPTIONS}
               placeholder="Select a contact"
             />
             <Select
@@ -83,7 +82,7 @@ const NoteForm = ({ onClose, note, isEdit, handleNote }) => {
               className="w-full flex-grow-0"
               label="Tags"
               name="tags"
-              options={tags}
+              options={TAG_OPTIONS}
               placeholder="Select tags"
             />
           </Pane.Body>

@@ -6,7 +6,7 @@ import Form from "./Form";
 
 import { NOTES_FORM_INITIAL_FORM_VALUES } from "../constants";
 
-const NewNotePane = ({ showPane, setShowPane, createNote }) => {
+const Create = ({ showPane, setShowPane, createNote }) => {
   const onClose = () => setShowPane(false);
 
   return (
@@ -17,7 +17,7 @@ const NewNotePane = ({ showPane, setShowPane, createNote }) => {
         </Typography>
       </Pane.Header>
       <Form
-        handleNote={createNote}
+        createNote={createNote}
         isEdit={false}
         note={NOTES_FORM_INITIAL_FORM_VALUES}
         onClose={onClose}
@@ -26,4 +26,4 @@ const NewNotePane = ({ showPane, setShowPane, createNote }) => {
   );
 };
 
-export default NewNotePane;
+export default Create;
