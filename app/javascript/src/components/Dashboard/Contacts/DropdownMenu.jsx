@@ -3,19 +3,15 @@ import React from "react";
 import { MenuVertical } from "neetoicons";
 import { Dropdown } from "neetoui";
 
-const { Menu, MenuItem } = Dropdown;
+const { Menu, MenuItem, Divider } = Dropdown;
 
-const DropdownMenu = ({ handleEdit, handleDelete, className = "" }) => (
-  <div className={className}>
-    <Dropdown customTarget={<MenuVertical size={17} />}>
-      <Menu>
-        <MenuItem.Button onClick={handleEdit}>Edit</MenuItem.Button>
-        <MenuItem.Button style="danger" onClick={handleDelete}>
-          Delete
-        </MenuItem.Button>
-      </Menu>
-    </Dropdown>
-  </div>
+const DropdownMenu = () => (
+  <Dropdown className="block" customTarget={<MenuVertical />}>
+    <Menu>
+      <MenuItem.Button>Edit</MenuItem.Button>
+      <Divider />
+      <MenuItem.Button style="danger">Delete</MenuItem.Button>
+    </Menu>
+  </Dropdown>
 );
-
 export default DropdownMenu;

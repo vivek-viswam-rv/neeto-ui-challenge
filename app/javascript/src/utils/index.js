@@ -18,3 +18,21 @@ export const parseNoteValues = values => {
 
   return { ...values, tags, assignedContact };
 };
+
+export const parseContactValues = values => {
+  const assignedContact = values.assignedContact.label;
+  const tags = values.tags.map(tag => tag.label);
+
+  return { ...values, tags, assignedContact };
+};
+
+export const buildRowData = contacts =>
+  contacts.map((contact, idx) => {
+    const name = `${contact.firstName} ${contact.lastName}`;
+
+    return {
+      card: { name, role: contact.role },
+      email: contact.email,
+      key: idx,
+    };
+  });

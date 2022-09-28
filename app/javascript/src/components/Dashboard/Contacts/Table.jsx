@@ -1,56 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { getTimeStamp } from "utils/index";
+import { Table as FormikTable } from "neetoui";
 
-import Contact from "./Contact";
-import Edit from "./Pane/Edit";
+import { buildRowData } from "utils/index";
 
-const Table = ({
-  contacts = [],
-  setContacts,
-  setSelectedContactId,
-  setShowDeleteAlert,
-}) => {
-  const [showEditContact, setShowEditContact] = useState(false);
-  const [selectedContact, setSelectedContact] = useState({});
+import { TABLE_COLUMN_DATA } from "./constants";
 
-  const editContact = (id, values) => {
-    setContacts(contacts =>
-      contacts.map(contact => {
-        if (contact.id === id) {
-          return { ...values, lastUpdated: getTimeStamp(), isModified: true };
-        }
-
-        return contact;
-      })
-    );
-  };
+const Table = ({ contacts = [] }) => {
+  const TABLE_ROW_DATA = buildRowData(contacts);
 
   return (
-    <>
-      <div className="notes-table-height h-full w-full">
-        {contacts.map(contact => (
-          <Contact
-            key={contact.id}
-            deleteClick={() => {
-              setSelectedContactId(contact.id);
-              setShowDeleteAlert(true);
-            }}
-            editClick={() => {
-              setSelectedContact(contact);
-              setShowEditContact(true);
-            }}
-            {...contact}
-          />
-        ))}
-      </div>
-      <Edit
-        contact={selectedContact}
-        editContact={editContact}
-        setShowPane={setShowEditContact}
-        showPane={showEditContact}
+    <div className="notes-table-height h-full w-full">
+      <FormikTable
+        rowSelection
+        className="v-screen"
+        columnData={TABLE_COLUMN_DATA}
+        currentPageNumber={1}
+        defaultPageSize={10}
+        handlePageChange={function noRefCheck() {}}
+        rowData={TABLE_ROW_DATA}
       />
-    </>
+    </div>
   );
 };
 

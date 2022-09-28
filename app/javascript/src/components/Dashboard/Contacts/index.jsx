@@ -5,7 +5,6 @@ import { Button, PageLoader } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
-import { getTimeStamp } from "utils/index";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
@@ -20,7 +19,6 @@ const Contacts = () => {
   const [showNewContactPane, setShowNewContactPane] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedContactId, setSelectedContactId] = useState([]);
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
@@ -33,17 +31,6 @@ const Contacts = () => {
       setLoading(false);
     }
   }, []);
-
-  const createContact = values =>
-    setContacts(contacts => [
-      ...contacts,
-      { ...values, lastUpdated: getTimeStamp(), isModified: false },
-    ]);
-
-  const removeContact = () =>
-    setContacts(contacts =>
-      contacts.filter(contacts => contacts.id !== selectedContactId)
-    );
 
   if (loading) {
     return <PageLoader />;
@@ -71,12 +58,7 @@ const Contacts = () => {
           }}
         />
         {contacts.length ? (
-          <Table
-            contacts={contacts}
-            setContacts={setContacts}
-            setSelectedContactId={setSelectedContactId}
-            setShowDeleteAlert={setShowDeleteAlert}
-          />
+          <Table contacts={contacts} setShowDeleteAlert={setShowDeleteAlert} />
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
@@ -87,13 +69,13 @@ const Contacts = () => {
           />
         )}
         <Create
-          createContact={createContact}
+          createContact={null}
           setShowPane={setShowNewContactPane}
           showPane={showNewContactPane}
         />
         {showDeleteAlert && (
           <DeleteAlert
-            removeContact={removeContact}
+            removeContact={null}
             onClose={() => setShowDeleteAlert(false)}
           />
         )}
