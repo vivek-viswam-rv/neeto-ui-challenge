@@ -6,18 +6,21 @@ export const CONTACTS = [
     lastName: "Smith",
     email: "oliver@example.com",
     role: "Owner",
+    createdAt: "September 24,2022",
   },
   {
     firstName: "James",
     lastName: "Bond",
     email: "bond@work.com",
     role: "Owner",
+    createdAt: "September 24,2022",
   },
   {
     firstName: "Steven",
     lastName: "Strange",
     email: "steven@marvel.com",
     role: "User",
+    createdAt: "September 24,2022",
   },
 ];
 

@@ -37,7 +37,6 @@ export const TABLE_COLUMN_DATA = [
     key: "card",
     title: "Name & Role",
     render: card => <Card name={card.name} role={card.role} />,
-    // width: "auto",
   },
   {
     dataIndex: "email",
@@ -46,12 +45,15 @@ export const TABLE_COLUMN_DATA = [
     },
     key: "email",
     title: "Email",
-    // width: 200,
+  },
+  {
+    dataIndex: "createdAt",
+    key: "createdAt",
+    title: "Created At",
   },
   {
     dataIndex: "dropdown",
     key: "dropdown",
     render: props => <DropdownMenu {...props} />,
-    // width: 10,
   },
 ];
