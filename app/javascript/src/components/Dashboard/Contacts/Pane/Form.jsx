@@ -14,14 +14,14 @@ const Form = ({
   contact,
   isEdit,
   createContact = null,
-  editContact = null,
+  updateContact = null,
 }) => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = values => {
     try {
       isEdit
-        ? editContact(contact.id, parseContactValues(values))
+        ? updateContact(contact.id, parseContactValues(values))
         : createContact(parseContactValues(values));
       onClose();
     } catch (err) {
