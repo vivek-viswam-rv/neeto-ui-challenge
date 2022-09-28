@@ -3,30 +3,26 @@ import React, { useState } from "react";
 import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
-import { Input, Select } from "neetoui/formik";
+import { Input } from "neetoui/formik";
 
-import { buildSelectOption, parseNoteValues } from "utils/index";
+import { buildSelectOption, parseContactValues } from "utils/index";
 
-import {
-  CONTACT_OPTIONS,
-  NOTES_FORM_VALIDATION_SCHEMA,
-  TAG_OPTIONS,
-} from "../constants";
+import { CONTACTS_FORM_VALIDATION_SCHEMA } from "../constants";
 
-const NoteForm = ({
+const Form = ({
   onClose,
-  note,
+  contact,
   isEdit,
-  createNote = null,
-  updateNote = null,
+  createContact = null,
+  updateContact = null,
 }) => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = values => {
     try {
       isEdit
-        ? updateNote(note.id, parseNoteValues(values))
-        : createNote(parseNoteValues(values));
+        ? updateContact(contact.id, parseContactValues(values))
+        : createContact(parseContactValues(values));
       onClose();
     } catch (err) {
       logger.error(err);
@@ -37,15 +33,15 @@ const NoteForm = ({
     <Formik
       validateOnBlur={submitted}
       validateOnChange={submitted}
-      validationSchema={NOTES_FORM_VALIDATION_SCHEMA}
+      validationSchema={CONTACTS_FORM_VALIDATION_SCHEMA}
       initialValues={
         isEdit
           ? {
-              ...note,
-              assignedContact: buildSelectOption(note.assignedContact),
-              tags: note.tags.map(buildSelectOption),
+              ...contact,
+              assignedContact: buildSelectOption(contact.assignedContact),
+              tags: contact.tags.map(buildSelectOption),
             }
-          : note
+          : contact
       }
       onSubmit={handleSubmit}
     >
@@ -55,33 +51,8 @@ const NoteForm = ({
             <Input
               required
               className="w-full flex-grow-0"
-              label="Title"
-              name="title"
-            />
-            <Input
-              required
-              className="w-full flex-grow-0"
-              label="Description"
-              name="description"
-            />
-            <Select
-              isSearchable
-              required
-              className="w-full flex-grow-0"
-              label="Assigned Contact"
-              name="assignedContact"
-              options={CONTACT_OPTIONS}
-              placeholder="Select a contact"
-            />
-            <Select
-              isMulti
-              isSearchable
-              required
-              className="w-full flex-grow-0"
-              label="Tags"
-              name="tags"
-              options={TAG_OPTIONS}
-              placeholder="Select tags"
+              label="First Name"
+              name="firstName"
             />
           </Pane.Body>
           <Pane.Footer>
@@ -109,4 +80,4 @@ const NoteForm = ({
   );
 };
 
-export default NoteForm;
+export default Form;
