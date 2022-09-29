@@ -63,6 +63,6 @@ export const TABLE_COLUMN_DATA = [
   {
     dataIndex: "dropdown",
     key: "dropdown",
-    render: props => <DropdownMenu {...props} />,
+    render: DropdownMenu,
   },
 ];

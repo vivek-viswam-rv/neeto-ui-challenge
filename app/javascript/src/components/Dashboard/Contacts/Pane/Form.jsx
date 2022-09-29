@@ -5,7 +5,7 @@ import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select, EmailInput } from "neetoui/formik";
 
-import { parseContactValues } from "utils/index";
+import { buildContactFormData, parseContactValues } from "utils/index";
 
 import { CONTACTS_FORM_VALIDATION_SCHEMA, ROLE_OPTIONS } from "../constants";
 
@@ -21,7 +21,7 @@ const Form = ({
   const handleSubmit = values => {
     try {
       isEdit
-        ? updateContact(contact.id, parseContactValues(values))
+        ? updateContact(parseContactValues(values))
         : createContact(parseContactValues(values));
       onClose();
     } catch (err) {
@@ -31,16 +31,10 @@ const Form = ({
 
   return (
     <Formik
+      initialValues={buildContactFormData(contact)}
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={CONTACTS_FORM_VALIDATION_SCHEMA}
-      initialValues={
-        isEdit
-          ? {
-              ...contact,
-            }
-          : contact
-      }
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (

@@ -66,7 +66,7 @@ const Contacts = () => {
           }}
         />
         {contacts.length ? (
-          <Table contacts={contacts} />
+          <Table contacts={contacts} setContacts={setContacts} />
         ) : (
           <EmptyState
             image={EmptyNotesListImage}

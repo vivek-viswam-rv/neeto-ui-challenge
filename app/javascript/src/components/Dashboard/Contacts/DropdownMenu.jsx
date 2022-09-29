@@ -5,10 +5,10 @@ import { Dropdown } from "neetoui";
 
 const { Menu, MenuItem, Divider } = Dropdown;
 
-const DropdownMenu = () => (
+const DropdownMenu = ({ handleEdit }) => (
   <Dropdown className="block" customTarget={<MenuVertical />}>
     <Menu>
-      <MenuItem.Button>Edit</MenuItem.Button>
+      <MenuItem.Button onClick={handleEdit}>Edit</MenuItem.Button>
       <Divider />
       <MenuItem.Button style="danger">Delete</MenuItem.Button>
     </Menu>

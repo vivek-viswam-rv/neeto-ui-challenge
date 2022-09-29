@@ -2,6 +2,13 @@ import dayjs from "dayjs";
 import * as R from "ramda";
 import slugify from "slugify";
 
+const buildEmailInput = emails =>
+  emails.map(email => ({
+    label: email,
+    value: email,
+    valid: true,
+  }));
+
 export const isPresent = R.pipe(R.either(R.isNil, R.isEmpty), R.not);
 
 export const timeAgoInWords = dateTime => dayjs(dateTime).fromNow();
@@ -32,7 +39,7 @@ export const parseContactValues = values => {
   return { ...values, emails, role };
 };
 
-export const buildRowData = contacts =>
+export const buildRowData = (contacts, setShowEditPane, setSelectedContact) =>
   contacts.map((contact, idx) => {
     const name = `${contact.firstName} ${contact.lastName}`;
 
@@ -40,6 +47,18 @@ export const buildRowData = contacts =>
       card: { name, role: contact.role },
       emails: contact.emails,
       createdAt: contact.createdAt,
+      dropdown: {
+        handleEdit: () => {
+          setShowEditPane(true);
+          setSelectedContact(contact);
+        },
+      },
       key: idx,
     };
   });
+
+export const buildContactFormData = contact => ({
+  ...contact,
+  emails: buildEmailInput(contact.emails),
+  role: buildSelectOption(contact.role),
+});
