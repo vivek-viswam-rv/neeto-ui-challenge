@@ -44,12 +44,14 @@ const NoteForm = ({
               className="w-full flex-grow-0"
               label="Title"
               name="title"
+              placeholder="Enter a title for the note"
             />
             <Input
               required
               className="w-full flex-grow-0"
               label="Description"
               name="description"
+              placeholder="Enter a description"
             />
             <Select
               isSearchable
