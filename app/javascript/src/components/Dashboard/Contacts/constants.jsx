@@ -41,12 +41,19 @@ export const TABLE_COLUMN_DATA = [
     render: card => <Card name={card.name} role={card.role} />,
   },
   {
-    dataIndex: "email",
+    dataIndex: "emails",
     ellipsis: {
       showTitle: false,
     },
-    key: "email",
+    key: "emails",
     title: "Email",
+    render: emails => (
+      <div className="flex flex-col">
+        {emails.map((email, idx) => (
+          <div key={idx}>{email}</div>
+        ))}
+      </div>
+    ),
   },
   {
     dataIndex: "createdAt",

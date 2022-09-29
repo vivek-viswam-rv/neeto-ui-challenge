@@ -32,7 +32,7 @@ export const buildRowData = contacts =>
 
     return {
       card: { name, role: contact.role },
-      email: contact.email,
+      emails: contact.emails,
       createdAt: contact.createdAt,
       key: idx,
     };
