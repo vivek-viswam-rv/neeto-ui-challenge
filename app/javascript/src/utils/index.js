@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import * as R from "ramda";
 import slugify from "slugify";
-import { v4 as uuidV4 } from "uuid";
+import { v4 as getNewId } from "uuid";
 
 const buildEmailInput = emails =>
   emails.map(email => ({
@@ -12,6 +12,8 @@ const buildEmailInput = emails =>
 
 export const isPresent = R.pipe(R.either(R.isNil, R.isEmpty), R.not);
 
+// Date and time related functions
+
 export const timeAgoInWords = dateTime => dayjs(dateTime).fromNow();
 export const getTimeStamp = () => dayjs().toString();
 export const getDateStamp = () => {
@@ -20,6 +22,8 @@ export const getDateStamp = () => {
 
   return `${month} ${date.getDate()}, ${date.getFullYear()}`;
 };
+
+// Form related functions
 
 export const buildSelectOption = item => ({
   label: item,
@@ -40,6 +44,18 @@ export const parseContactValues = values => {
   return { ...values, emails, role };
 };
 
+export const buildContactInitialValues = contact => ({
+  ...contact,
+  emails: buildEmailInput(contact.emails),
+  role: buildSelectOption(contact.role),
+});
+
+export const buildNoteInitialValues = note => ({
+  ...note,
+  assignedContact: buildSelectOption(note.assignedContact),
+  tags: note.tags.map(buildSelectOption),
+});
+
 export const buildRowData = (contacts, setShowEditPane, setSelectedContact) =>
   contacts.map(contact => {
     const name = `${contact.firstName} ${contact.lastName}`;
@@ -59,19 +75,7 @@ export const buildRowData = (contacts, setShowEditPane, setSelectedContact) =>
     };
   });
 
-export const getNewId = uuidV4;
-
-export const buildContactInitialValues = contact => ({
-  ...contact,
-  emails: buildEmailInput(contact.emails),
-  role: buildSelectOption(contact.role),
-});
-
-export const buildNoteInitialValues = note => ({
-  ...note,
-  assignedContact: buildSelectOption(note.assignedContact),
-  tags: note.tags.map(buildSelectOption),
-});
+// Contact/Note entity related functions
 
 export const createContactEntity = values => ({
   ...values,
