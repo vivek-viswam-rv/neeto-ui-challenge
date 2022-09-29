@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Table as FormikTable } from "neetoui";
 import { buildRowData } from "utils";
 
-import { TABLE_COLUMN_DATA } from "./constants";
+import { COLUMN_DATA } from "./constants";
 import Edit from "./Pane/Edit";
 
 const Table = ({
@@ -22,21 +22,17 @@ const Table = ({
     );
   };
 
-  const TABLE_ROW_DATA = buildRowData(
-    contacts,
-    setShowEditPane,
-    setSelectedContact
-  );
+  const ROW_DATA = buildRowData(contacts, setShowEditPane, setSelectedContact);
 
   return (
     <div className="notes-table-height h-full w-full">
       <FormikTable
         rowSelection
-        columnData={TABLE_COLUMN_DATA}
+        columnData={COLUMN_DATA}
         currentPageNumber={page}
         defaultPageSize={8}
         handlePageChange={page => setPage(page)}
-        rowData={TABLE_ROW_DATA}
+        rowData={ROW_DATA}
         selectedRowKeys={selectedContactIds}
         onRowSelect={selectedRowKeys => setSelectedContactIds(selectedRowKeys)}
       />

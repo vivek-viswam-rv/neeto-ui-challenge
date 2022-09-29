@@ -3,12 +3,12 @@ import React from "react";
 import Card from "./Card";
 import DropdownMenu from "./DropdownMenu";
 
-export const TABLE_COLUMN_DATA = [
+export const COLUMN_DATA = [
   {
     dataIndex: "card",
     key: "card",
     title: "Name & Role",
-    render: card => <Card name={card.name} role={card.role} />,
+    render: Card,
   },
   {
     dataIndex: "emails",

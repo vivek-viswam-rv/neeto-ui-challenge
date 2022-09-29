@@ -20,7 +20,7 @@ const DeleteAlert = ({ onClose, removeContact }) => {
     <Alert
       isOpen
       isSubmitting={deleting}
-      message="Are you sure you want to delete the Contact? This cannot be undone."
+      message="Are you sure you want to delete selected contact(s)? This cannot be undone."
       title="Delete Contact"
       onClose={onClose}
       onSubmit={handleDelete}
