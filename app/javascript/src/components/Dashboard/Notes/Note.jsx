@@ -2,9 +2,10 @@ import React from "react";
 
 import { Clock } from "neetoicons";
 import { Avatar, Tag, Typography, Tooltip } from "neetoui";
-import { getNewKey, timeAgoInWords } from "utils";
+import { getUUID } from "utils";
 
 import DropdownMenu from "./DropdownMenu";
+import { timeAgoInWords } from "./utils";
 
 const Note = ({
   title,
@@ -33,7 +34,7 @@ const Note = ({
     <div className="note-footer grid grid-cols-3 pt-3">
       <div className="col-span-2 col-start-1">
         {tags.map(tag => (
-          <Tag className="m-1" key={getNewKey()} label={tag} />
+          <Tag className="m-1" key={getUUID()} label={tag} />
         ))}
       </div>
       <div className="flex justify-end">

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getNewKey } from "utils";
+import { getUUID } from "utils";
 
 import Card from "./Card";
 import DropdownMenu from "./DropdownMenu";
@@ -22,7 +22,7 @@ export const COLUMN_DATA = [
     render: emails => (
       <div className="flex flex-col">
         {emails.map(email => (
-          <div key={getNewKey()}>{email}</div>
+          <div key={getUUID()}>{email}</div>
         ))}
       </div>
     ),

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { Toastr } from "neetoui";
-import { v4 as getUUID } from "uuid";
+import { getUUID } from "utils";
 
 const getTimeStamp = () => dayjs().toString();
 
@@ -36,3 +36,5 @@ export const updateNote = ({ id, values, setNotes }) => {
   );
   Toastr.success("The note has been updated successfully.");
 };
+
+export const timeAgoInWords = dateTime => dayjs(dateTime).fromNow();

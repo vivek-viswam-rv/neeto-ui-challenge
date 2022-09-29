@@ -4,9 +4,9 @@ import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select } from "neetoui/formik";
-import { buildNoteInitialValues, parseNoteValues } from "utils";
 
 import { CONTACT_OPTIONS, VALIDATION_SCHEMA, TAG_OPTIONS } from "./constants";
+import { buildNoteInitialValues, parseNoteValues } from "./utils";
 
 const NoteForm = ({
   onClose,
@@ -20,7 +20,7 @@ const NoteForm = ({
   const handleSubmit = values => {
     try {
       isEdit
-        ? updateNote(note.id, parseNoteValues(values))
+        ? updateNote({ id: note.id, values: parseNoteValues(values) })
         : createNote(parseNoteValues(values));
       onClose();
     } catch (err) {

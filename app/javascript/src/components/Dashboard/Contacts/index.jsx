@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Delete } from "neetoicons";
-import { Button, PageLoader, Toastr } from "neetoui";
+import { Button, PageLoader } from "neetoui";
 import { Container, Header, SubHeader } from "neetoui/layouts";
-import { createContactEntity } from "utils";
 
 import EmptyState from "components/Common/EmptyState";
 import { CONTACTS } from "components/Dashboard/constants";
@@ -13,6 +12,7 @@ import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import Create from "./Pane/Create";
 import Table from "./Table";
+import { createContact, removeContact } from "./utils";
 
 const Contacts = () => {
   const [loading, setLoading] = useState(true);
@@ -22,17 +22,6 @@ const Contacts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [contacts, setContacts] = useState([]);
   const [selectedContactIds, setSelectedContactIds] = useState([]);
-
-  const createContact = values => {
-    setContacts(contacts => [...contacts, createContactEntity(values)]);
-    Toastr.success("A new contact has been created successfully");
-  };
-  const removeContact = () => {
-    setContacts(contacts =>
-      contacts.filter(contact => !selectedContactIds.includes(contact.id))
-    );
-    Toastr.success("Deleted contact(s) successfully");
-  };
 
   useEffect(() => {
     try {
@@ -100,15 +89,17 @@ const Contacts = () => {
           />
         )}
         <Create
-          createContact={createContact}
+          createContact={values => createContact({ values, setContacts })}
           setShowPane={setShowNewContactPane}
           showPane={showNewContactPane}
         />
         {showDeleteAlert && (
           <DeleteAlert
-            removeContact={removeContact}
             selectedContactIds={selectedContactIds}
             setSelectedContactIds={setSelectedContactIds}
+            removeContact={() =>
+              removeContact({ selectedContactIds, setContacts })
+            }
             onClose={() => setShowDeleteAlert(false)}
           />
         )}
