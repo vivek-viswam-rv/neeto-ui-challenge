@@ -2,13 +2,14 @@ import React, { useState } from "react";
 
 import { Alert } from "neetoui";
 
-const DeleteAlert = ({ onClose, removeContact }) => {
+const DeleteAlert = ({ onClose, removeContact, setSelectedContactIds }) => {
   const [deleting, setDeleting] = useState(false);
 
   const handleDelete = () => {
     try {
       setDeleting(true);
       removeContact();
+      setSelectedContactIds([]);
       onClose();
     } catch (error) {
       logger.error(error);

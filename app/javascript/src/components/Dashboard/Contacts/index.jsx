@@ -103,6 +103,7 @@ const Contacts = () => {
         {showDeleteAlert && (
           <DeleteAlert
             removeContact={removeContact}
+            setSelectedContactIds={setSelectedContactIds}
             onClose={() => setShowDeleteAlert(false)}
           />
         )}
