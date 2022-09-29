@@ -7,7 +7,7 @@ export const INITIAL_VALUES = {
   firstName: "",
   lastName: "",
   emails: [],
-  role: "",
+  role: {},
 };
 
 export const VALIDATION_SCHEMA = yup.object().shape({
@@ -20,9 +20,8 @@ export const VALIDATION_SCHEMA = yup.object().shape({
       "are-all-emails-valid",
       "Please make sure all emails are valid.",
       emails => emails.every(({ valid }) => valid)
-    )
-    .nullable(),
-  role: yup.object().required("Role is required"),
+    ),
+  role: yup.object().required("Role is required").nullable(),
 });
 
 export const ROLE_OPTIONS = ROLES.map(buildSelectOption);
