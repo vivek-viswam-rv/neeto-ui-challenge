@@ -3,7 +3,7 @@ import * as yup from "yup";
 
 import { ROLES } from "components/Dashboard/constants";
 
-export const INITIAL_VALUES = {
+export const EMPTY_CONTACT = {
   firstName: "",
   lastName: "",
   emails: [],

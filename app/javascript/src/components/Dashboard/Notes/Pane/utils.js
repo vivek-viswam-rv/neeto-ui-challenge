@@ -9,6 +9,8 @@ export const parseNoteValues = values => {
 
 export const buildNoteInitialValues = note => ({
   ...note,
-  assignedContact: buildSelectOption(note.assignedContact),
+  assignedContact: note.assignedContact
+    ? buildSelectOption(note.assignedContact)
+    : null,
   tags: note.tags.map(buildSelectOption),
 });

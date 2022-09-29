@@ -17,5 +17,5 @@ export const parseContactValues = values => {
 export const buildContactInitialValues = contact => ({
   ...contact,
   emails: buildEmailInput(contact.emails),
-  role: buildSelectOption(contact.role),
+  role: contact.role ? buildSelectOption(contact.role) : null,
 });

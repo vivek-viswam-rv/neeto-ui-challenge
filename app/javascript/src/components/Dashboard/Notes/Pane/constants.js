@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 import { CONTACTS, TAGS } from "components/Dashboard/constants";
 
-export const INITIAL_VALUES = {
+export const EMPTY_NOTE = {
   title: "",
   description: "",
   assignedContact: "",
@@ -19,7 +19,10 @@ export const CONTACT_OPTIONS = CONTACTS.map(contact =>
 export const VALIDATION_SCHEMA = yup.object().shape({
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
-  assignedContact: yup.object().required("Assigned contact required"),
+  assignedContact: yup
+    .object()
+    .nullable()
+    .required("Assigned contact required"),
   tags: yup
     .array()
     .of(

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Pane, Typography } from "neetoui";
 
-import { INITIAL_VALUES } from "./constants";
+import { EMPTY_CONTACT } from "./constants";
 import Form from "./Form";
 
 const Create = ({ showPane, setShowPane, createContact }) => {
@@ -16,7 +16,7 @@ const Create = ({ showPane, setShowPane, createContact }) => {
         </Typography>
       </Pane.Header>
       <Form
-        contact={INITIAL_VALUES}
+        contact={EMPTY_CONTACT}
         createContact={createContact}
         isEdit={false}
         onClose={onClose}
