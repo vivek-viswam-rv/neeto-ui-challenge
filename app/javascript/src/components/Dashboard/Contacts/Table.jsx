@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import { Table as NeetoUITable, Toastr } from "neetoui";
-import { buildRowData, updateContactEntity } from "utils";
+import { Table as NeetoUITable } from "neetoui";
 
 import { COLUMN_DATA } from "./constants";
 import Edit from "./Pane/Edit";
+import { buildRowData, updateContact } from "./utils";
 
 const Table = ({
   contacts = [],
@@ -16,21 +16,6 @@ const Table = ({
   const [showEditPane, setShowEditPane] = useState(false);
   const [selectedContact, setSelectedContact] = useState({});
 
-  const updateContact = (id, values) => {
-    setContacts(contacts =>
-      contacts.map(contact =>
-        contact.id === id ? updateContactEntity({ id, values }) : contact
-      )
-    );
-    Toastr.success("The contact has been successfully updated.");
-  };
-
-  const ROW_DATA = buildRowData({
-    contacts,
-    setShowEditPane,
-    setSelectedContact,
-  });
-
   return (
     <div className="notes-table-height h-full w-full">
       <NeetoUITable
@@ -39,15 +24,21 @@ const Table = ({
         currentPageNumber={pageNumber}
         defaultPageSize={8}
         handlePageChange={pageNumber => setPageNumber(pageNumber)}
-        rowData={ROW_DATA}
         selectedRowKeys={selectedContactIds}
+        rowData={buildRowData({
+          contacts,
+          setShowEditPane,
+          setSelectedContact,
+        })}
         onRowSelect={selectedRowKeys => setSelectedContactIds(selectedRowKeys)}
       />
       <Edit
         contact={selectedContact}
         setShowEditPane={setShowEditPane}
         showEditPane={showEditPane}
-        updateContact={updateContact}
+        updateContact={({ id, values }) =>
+          updateContact({ id, values, setContacts })
+        }
       />
     </div>
   );

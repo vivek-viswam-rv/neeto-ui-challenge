@@ -4,9 +4,9 @@ import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select, EmailInput } from "neetoui/formik";
-import { buildContactInitialValues, parseContactValues } from "utils";
 
 import { VALIDATION_SCHEMA, ROLE_OPTIONS } from "./constants";
+import { buildContactInitialValues, parseContactValues } from "./utils";
 
 const Form = ({
   onClose,
@@ -20,7 +20,7 @@ const Form = ({
   const handleSubmit = values => {
     try {
       isEdit
-        ? updateContact(contact.id, parseContactValues(values))
+        ? updateContact({ id: contact.id, values: parseContactValues(values) })
         : createContact(parseContactValues(values));
       onClose();
     } catch (err) {

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
-import { Button, PageLoader, Toastr } from "neetoui";
+import { Button, PageLoader } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
-import { createNoteEntity } from "utils";
 
 import EmptyState from "components/Common/EmptyState";
 import { NOTES } from "components/Dashboard/constants";
@@ -12,6 +11,7 @@ import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import Create from "./Pane/Create";
 import Table from "./Table";
+import { createNote, removeNote } from "./utils";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
@@ -32,16 +32,6 @@ const Notes = () => {
       setLoading(false);
     }
   }, []);
-
-  const createNote = values => {
-    setNotes(notes => [...notes, createNoteEntity(values)]);
-    Toastr.success("A new note has been created successfully.");
-  };
-
-  const removeNote = () => {
-    setNotes(notes => notes.filter(note => note.id !== selectedNoteId));
-    Toastr.success("Deleted a note successfully.");
-  };
 
   if (loading) {
     return <PageLoader />;
@@ -85,13 +75,13 @@ const Notes = () => {
           />
         )}
         <Create
-          createNote={createNote}
+          createNote={values => createNote({ values, setNotes })}
           setShowPane={setShowNewNotePane}
           showPane={showNewNotePane}
         />
         {showDeleteAlert && (
           <DeleteAlert
-            removeNote={removeNote}
+            removeNote={() => removeNote({ setNotes, selectedNoteId })}
             onClose={() => setShowDeleteAlert(false)}
           />
         )}

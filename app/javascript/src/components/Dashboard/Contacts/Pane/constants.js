@@ -1,9 +1,10 @@
+import slugify from "slugify";
 import { buildSelectOption } from "utils";
 import * as yup from "yup";
 
 import { ROLES } from "components/Dashboard/constants";
 
-export const INITIAL_VALUES = {
+export const EMPTY_CONTACT = {
   firstName: "",
   lastName: "",
   emails: [],
@@ -20,9 +21,15 @@ export const VALIDATION_SCHEMA = yup.object().shape({
       "are-all-emails-valid",
       "Please make sure all emails are valid.",
       emails => emails.every(({ valid }) => valid)
-    )
+    ),
+  role: yup
+    .object()
+    .shape({
+      label: yup.string().oneOf(ROLES),
+      value: yup.string().oneOf(ROLES.map(slugify)),
+    })
+    .required("Role is required")
     .nullable(),
-  role: yup.object().required("Role is required"),
 });
 
 export const ROLE_OPTIONS = ROLES.map(buildSelectOption);
