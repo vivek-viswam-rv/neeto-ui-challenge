@@ -1,9 +1,8 @@
 import slugify from "slugify";
+import { buildSelectOption } from "utils";
 import * as yup from "yup";
 
-import { buildSelectOption } from "utils/index";
-
-import { CONTACTS, TAGS } from "../../constants";
+import { CONTACTS, TAGS } from "components/Dashboard/constants";
 
 export const INITIAL_VALUES = {
   title: "",

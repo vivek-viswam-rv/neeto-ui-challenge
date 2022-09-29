@@ -6,13 +6,12 @@ import { Container, Header } from "neetoui/layouts";
 import { buildNoteEntity } from "utils";
 
 import EmptyState from "components/Common/EmptyState";
+import { NOTES } from "components/Dashboard/constants";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import Create from "./Pane/Create";
 import Table from "./Table";
-
-import { NOTES } from "../constants";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);

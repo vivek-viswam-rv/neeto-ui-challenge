@@ -1,7 +1,7 @@
 import { buildSelectOption } from "utils";
 import * as yup from "yup";
 
-import { ROLES } from "../../constants";
+import { ROLES } from "components/Dashboard/constants";
 
 export const INITIAL_VALUES = {
   firstName: "",

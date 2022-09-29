@@ -7,13 +7,12 @@ import { Container, Header, SubHeader } from "neetoui/layouts";
 import { buildContactEntity } from "utils";
 
 import EmptyState from "components/Common/EmptyState";
+import { CONTACTS } from "components/Dashboard/constants";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import Create from "./Pane/Create";
 import Table from "./Table";
-
-import { CONTACTS } from "../constants";
 
 const Contacts = () => {
   const [loading, setLoading] = useState(true);
