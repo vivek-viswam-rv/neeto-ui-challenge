@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Table as FormikTable } from "neetoui";
+import { Table as NeetoUITable } from "neetoui";
 import { buildRowData } from "utils";
 
 import { COLUMN_DATA } from "./constants";
@@ -12,7 +12,7 @@ const Table = ({
   selectedContactIds,
   setSelectedContactIds,
 }) => {
-  const [pageNo, setPageNo] = useState(1);
+  const [pageNumber, setPageNumber] = useState(1);
   const [showEditPane, setShowEditPane] = useState(false);
   const [selectedContact, setSelectedContact] = useState({});
 
@@ -26,12 +26,12 @@ const Table = ({
 
   return (
     <div className="notes-table-height h-full w-full">
-      <FormikTable
+      <NeetoUITable
         rowSelection
         columnData={COLUMN_DATA}
-        currentPageNumber={pageNo}
+        currentPageNumber={pageNumber}
         defaultPageSize={8}
-        handlePageChange={pageNo => setPageNo(pageNo)}
+        handlePageChange={pageNumber => setPageNumber(pageNumber)}
         rowData={ROW_DATA}
         selectedRowKeys={selectedContactIds}
         onRowSelect={selectedRowKeys => setSelectedContactIds(selectedRowKeys)}
