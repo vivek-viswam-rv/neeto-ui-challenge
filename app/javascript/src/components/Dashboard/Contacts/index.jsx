@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Delete } from "neetoicons";
-import { Button, PageLoader } from "neetoui";
+import { Button, PageLoader, Toastr } from "neetoui";
 import { Container, Header, SubHeader } from "neetoui/layouts";
 import { createContactEntity } from "utils";
 
@@ -23,12 +23,16 @@ const Contacts = () => {
   const [contacts, setContacts] = useState([]);
   const [selectedContactIds, setSelectedContactIds] = useState([]);
 
-  const createContact = values =>
+  const createContact = values => {
     setContacts(contacts => [...contacts, createContactEntity(values)]);
-  const removeContact = () =>
+    Toastr.success("A new contact has been created successfully");
+  };
+  const removeContact = () => {
     setContacts(contacts =>
       contacts.filter(contact => !selectedContactIds.includes(contact.id))
     );
+    Toastr.success("Deleted contact(s) successfully");
+  };
 
   useEffect(() => {
     try {

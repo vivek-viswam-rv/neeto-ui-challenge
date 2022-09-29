@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { Toastr } from "neetoui";
 import { updateNoteEntity } from "utils";
 
 import Note from "./Note";
@@ -14,12 +15,14 @@ const Table = ({
   const [showEditNote, setShowEditNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
 
-  const updateNote = (id, values) =>
+  const updateNote = (id, values) => {
     setNotes(notes =>
       notes.map(note =>
         note.id === id ? updateNoteEntity({ id, values }) : note
       )
     );
+    Toastr.success("The note has been updated successfully.");
+  };
 
   return (
     <>

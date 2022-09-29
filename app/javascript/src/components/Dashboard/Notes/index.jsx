@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
-import { Button, PageLoader } from "neetoui";
+import { Button, PageLoader, Toastr } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 import { createNoteEntity } from "utils";
 
@@ -33,11 +33,15 @@ const Notes = () => {
     }
   }, []);
 
-  const createNote = values =>
+  const createNote = values => {
     setNotes(notes => [...notes, createNoteEntity(values)]);
+    Toastr.success("A new note has been created successfully.");
+  };
 
-  const removeNote = () =>
+  const removeNote = () => {
     setNotes(notes => notes.filter(note => note.id !== selectedNoteId));
+    Toastr.success("Deleted a note successfully.");
+  };
 
   if (loading) {
     return <PageLoader />;
