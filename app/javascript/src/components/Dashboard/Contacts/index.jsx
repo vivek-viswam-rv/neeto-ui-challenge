@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
+import { Delete } from "neetoicons";
 import { Button, PageLoader } from "neetoui";
-import { Container, Header } from "neetoui/layouts";
+import { Container, Header, SubHeader } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
 import { getDateStamp, getNewId } from "utils/index";
@@ -21,6 +22,7 @@ const Contacts = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [contacts, setContacts] = useState([]);
+  const [selectedContactIds, setSelectedContactIds] = useState([]);
 
   const createContact = contact => {
     setContacts(contacts => [
@@ -28,6 +30,10 @@ const Contacts = () => {
       { ...contact, id: getNewId(), createdAt: getDateStamp() },
     ]);
   };
+  const removeContact = () =>
+    setContacts(contacts =>
+      contacts.filter(contact => !selectedContactIds.includes(contact.id))
+    );
 
   useEffect(() => {
     try {
@@ -66,7 +72,25 @@ const Contacts = () => {
           }}
         />
         {contacts.length ? (
-          <Table contacts={contacts} setContacts={setContacts} />
+          <>
+            <SubHeader
+              rightActionBlock={
+                <Button
+                  disabled={!selectedContactIds.length}
+                  icon={Delete}
+                  label="Delete"
+                  size="small"
+                  onClick={() => setShowDeleteAlert(true)}
+                />
+              }
+            />
+            <Table
+              contacts={contacts}
+              selectedContactIds={selectedContactIds}
+              setContacts={setContacts}
+              setSelectedContactIds={setSelectedContactIds}
+            />
+          </>
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
@@ -83,7 +107,7 @@ const Contacts = () => {
         />
         {showDeleteAlert && (
           <DeleteAlert
-            removeContact={null}
+            removeContact={removeContact}
             onClose={() => setShowDeleteAlert(false)}
           />
         )}
