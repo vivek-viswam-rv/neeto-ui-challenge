@@ -12,7 +12,7 @@ const Table = ({
   selectedContactIds,
   setSelectedContactIds,
 }) => {
-  const [page, setPage] = useState(1);
+  const [pageNo, setPageNo] = useState(1);
   const [showEditPane, setShowEditPane] = useState(false);
   const [selectedContact, setSelectedContact] = useState({});
 
@@ -29,9 +29,9 @@ const Table = ({
       <FormikTable
         rowSelection
         columnData={COLUMN_DATA}
-        currentPageNumber={page}
+        currentPageNumber={pageNo}
         defaultPageSize={8}
-        handlePageChange={page => setPage(page)}
+        handlePageChange={pageNo => setPageNo(pageNo)}
         rowData={ROW_DATA}
         selectedRowKeys={selectedContactIds}
         onRowSelect={selectedRowKeys => setSelectedContactIds(selectedRowKeys)}
