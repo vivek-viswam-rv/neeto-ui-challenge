@@ -12,8 +12,6 @@ const buildEmailInput = emails =>
 
 export const isPresent = R.pipe(R.either(R.isNil, R.isEmpty), R.not);
 
-// Date and time related functions
-
 export const timeAgoInWords = dateTime => dayjs(dateTime).fromNow();
 export const getTimeStamp = () => dayjs().toString();
 export const getDateStamp = () => {
@@ -22,8 +20,6 @@ export const getDateStamp = () => {
 
   return `${month} ${date.getDate()}, ${date.getFullYear()}`;
 };
-
-// Form related functions
 
 export const buildSelectOption = item => ({
   label: item,
@@ -74,8 +70,6 @@ export const buildRowData = (contacts, setShowEditPane, setSelectedContact) =>
       key: contact.id,
     };
   });
-
-// Contact/Note entity related functions
 
 export const createContactEntity = values => ({
   ...values,
