@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { getTimeStamp } from "utils/index";
+import { Toastr } from "neetoui";
+import { updateNoteEntity } from "utils";
 
 import Note from "./Note";
 import Edit from "./Pane/Edit";
@@ -16,14 +17,11 @@ const Table = ({
 
   const updateNote = (id, values) => {
     setNotes(notes =>
-      notes.map(note => {
-        if (note.id === id) {
-          return { ...values, lastUpdated: getTimeStamp(), isModified: true };
-        }
-
-        return note;
-      })
+      notes.map(note =>
+        note.id === id ? updateNoteEntity({ id, values }) : note
+      )
     );
+    Toastr.success("The note has been updated successfully.");
   };
 
   return (
@@ -45,7 +43,6 @@ const Table = ({
         ))}
       </div>
       <Edit
-        isEdit
         note={selectedNote}
         setShowPane={setShowEditNote}
         showPane={showEditNote}

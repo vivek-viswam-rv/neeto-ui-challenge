@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
-import { Input } from "neetoui/formik";
+import { Input, Select, EmailInput } from "neetoui/formik";
+import { buildContactInitialValues, parseContactValues } from "utils";
 
-import { buildSelectOption, parseContactValues } from "utils/index";
-
-import { CONTACTS_FORM_VALIDATION_SCHEMA } from "../constants";
+import { VALIDATION_SCHEMA, ROLE_OPTIONS } from "./constants";
 
 const Form = ({
   onClose,
@@ -31,29 +30,45 @@ const Form = ({
 
   return (
     <Formik
+      initialValues={buildContactInitialValues(contact)}
       validateOnBlur={submitted}
       validateOnChange={submitted}
-      validationSchema={CONTACTS_FORM_VALIDATION_SCHEMA}
-      initialValues={
-        isEdit
-          ? {
-              ...contact,
-              assignedContact: buildSelectOption(contact.assignedContact),
-              tags: contact.tags.map(buildSelectOption),
-            }
-          : contact
-      }
+      validationSchema={VALIDATION_SCHEMA}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
         <FormikForm className="w-full">
           <Pane.Body className="space-y-6">
-            <Input
-              required
-              className="w-full flex-grow-0"
-              label="First Name"
-              name="firstName"
-            />
+            <div className="flex w-full">
+              <Input
+                required
+                className="mr-3"
+                label="First Name"
+                name="firstName"
+                placeholder="first name"
+              />
+              <Input
+                required
+                label="Last Name"
+                name="lastName"
+                placeholder="last name"
+              />
+            </div>
+            <div className="w-full">
+              <EmailInput
+                label="Email Address*"
+                name="emails"
+                placeholder="Enter email address"
+              />
+              <Select
+                required
+                className="mt-3"
+                label="Role"
+                name="role"
+                options={ROLE_OPTIONS}
+                placeholder="Select a role"
+              />
+            </div>
           </Pane.Body>
           <Pane.Footer>
             <Button

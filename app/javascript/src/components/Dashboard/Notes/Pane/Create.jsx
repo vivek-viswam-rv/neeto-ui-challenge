@@ -2,9 +2,8 @@ import React from "react";
 
 import { Pane, Typography } from "neetoui";
 
+import { INITIAL_VALUES } from "./constants";
 import Form from "./Form";
-
-import { NOTES_FORM_INITIAL_FORM_VALUES } from "../constants";
 
 const Create = ({ showPane, setShowPane, createNote }) => {
   const onClose = () => setShowPane(false);
@@ -19,7 +18,7 @@ const Create = ({ showPane, setShowPane, createNote }) => {
       <Form
         createNote={createNote}
         isEdit={false}
-        note={NOTES_FORM_INITIAL_FORM_VALUES}
+        note={INITIAL_VALUES}
         onClose={onClose}
       />
     </Pane>

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Clock } from "neetoicons";
 import { Avatar, Tag, Typography, Tooltip } from "neetoui";
-import { timeAgoInWords } from "utils";
+import { getNewKey, timeAgoInWords } from "utils";
 
 import DropdownMenu from "./DropdownMenu";
 
@@ -32,8 +32,8 @@ const Note = ({
     </div>
     <div className="note-footer grid grid-cols-3 pt-3">
       <div className="col-span-2 col-start-1">
-        {tags.map((tag, idx) => (
-          <Tag className="m-1" key={idx} label={tag} />
+        {tags.map(tag => (
+          <Tag className="m-1" key={getNewKey()} label={tag} />
         ))}
       </div>
       <div className="flex justify-end">

@@ -2,13 +2,19 @@ import React, { useState } from "react";
 
 import { Alert } from "neetoui";
 
-const DeleteAlert = ({ onClose, removeContact }) => {
+const DeleteAlert = ({
+  onClose,
+  removeContact,
+  setSelectedContactIds,
+  selectedContactIds,
+}) => {
   const [deleting, setDeleting] = useState(false);
 
   const handleDelete = () => {
     try {
       setDeleting(true);
       removeContact();
+      setSelectedContactIds([]);
       onClose();
     } catch (error) {
       logger.error(error);
@@ -20,7 +26,7 @@ const DeleteAlert = ({ onClose, removeContact }) => {
     <Alert
       isOpen
       isSubmitting={deleting}
-      message="Are you sure you want to delete the Contact? This cannot be undone."
+      message={`Are you sure you want to delete ${selectedContactIds.length} contact(s)? This cannot be undone.`}
       title="Delete Contact"
       onClose={onClose}
       onSubmit={handleDelete}

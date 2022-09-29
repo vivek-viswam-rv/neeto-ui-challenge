@@ -1,11 +1,10 @@
 import slugify from "slugify";
+import { buildSelectOption } from "utils";
 import * as yup from "yup";
 
-import { buildSelectOption } from "utils/index";
+import { CONTACTS, TAGS } from "components/Dashboard/constants";
 
-import { CONTACTS, TAGS } from "../constants";
-
-export const NOTES_FORM_INITIAL_FORM_VALUES = {
+export const INITIAL_VALUES = {
   title: "",
   description: "",
   assignedContact: "",
@@ -17,7 +16,7 @@ export const CONTACT_OPTIONS = CONTACTS.map(contact =>
   buildSelectOption(`${contact.firstName} ${contact.lastName}`)
 );
 
-export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
+export const VALIDATION_SCHEMA = yup.object().shape({
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
   assignedContact: yup.object().required("Assigned contact required"),

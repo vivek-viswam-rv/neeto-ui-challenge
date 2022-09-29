@@ -4,11 +4,11 @@ import { Pane, Typography } from "neetoui";
 
 import Form from "./Form";
 
-const Edit = ({ showPane, setShowPane, contact, updateContact }) => {
-  const onClose = () => setShowPane(false);
+const Edit = ({ showEditPane, setShowEditPane, contact, updateContact }) => {
+  const onClose = () => setShowEditPane(false);
 
   return (
-    <Pane isOpen={showPane} onClose={onClose}>
+    <Pane isOpen={showEditPane} onClose={onClose}>
       <Pane.Header>
         <Typography style="h2" weight="semibold">
           Edit Contact

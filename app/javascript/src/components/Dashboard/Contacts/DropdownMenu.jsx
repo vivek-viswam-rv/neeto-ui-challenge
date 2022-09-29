@@ -3,14 +3,12 @@ import React from "react";
 import { MenuVertical } from "neetoicons";
 import { Dropdown } from "neetoui";
 
-const { Menu, MenuItem, Divider } = Dropdown;
+const { Menu, MenuItem } = Dropdown;
 
-const DropdownMenu = () => (
+const DropdownMenu = ({ handleEdit }) => (
   <Dropdown className="block" customTarget={<MenuVertical />}>
     <Menu>
-      <MenuItem.Button>Edit</MenuItem.Button>
-      <Divider />
-      <MenuItem.Button style="danger">Delete</MenuItem.Button>
+      <MenuItem.Button onClick={handleEdit}>Edit</MenuItem.Button>
     </Menu>
   </Dropdown>
 );

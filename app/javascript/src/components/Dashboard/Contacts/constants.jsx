@@ -1,35 +1,31 @@
 import React from "react";
 
-import * as yup from "yup";
+import { getNewKey } from "utils";
 
 import Card from "./Card";
 import DropdownMenu from "./DropdownMenu";
 
-export const CONTACTS_FORM_INITIAL_FORM_VALUES = {
-  title: "",
-  description: "",
-  assignedContact: "",
-  tags: [],
-};
-
-export const CONTACTS_FORM_VALIDATION_SCHEMA = yup.object().shape({
-  firstName: yup.string().required("Title is required"),
-});
-
-export const TABLE_COLUMN_DATA = [
+export const COLUMN_DATA = [
   {
     dataIndex: "card",
     key: "card",
     title: "Name & Role",
-    render: card => <Card name={card.name} role={card.role} />,
+    render: Card,
   },
   {
-    dataIndex: "email",
+    dataIndex: "emails",
     ellipsis: {
       showTitle: false,
     },
-    key: "email",
+    key: "emails",
     title: "Email",
+    render: emails => (
+      <div className="flex flex-col">
+        {emails.map(email => (
+          <div key={getNewKey()}>{email}</div>
+        ))}
+      </div>
+    ),
   },
   {
     dataIndex: "createdAt",
@@ -39,6 +35,6 @@ export const TABLE_COLUMN_DATA = [
   {
     dataIndex: "dropdown",
     key: "dropdown",
-    render: props => <DropdownMenu {...props} />,
+    render: DropdownMenu,
   },
 ];

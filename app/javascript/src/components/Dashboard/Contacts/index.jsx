@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 
 import EmptyNotesListImage from "images/EmptyNotesList";
-import { Button, PageLoader } from "neetoui";
-import { Container, Header } from "neetoui/layouts";
+import { Delete } from "neetoicons";
+import { Button, PageLoader, Toastr } from "neetoui";
+import { Container, Header, SubHeader } from "neetoui/layouts";
+import { createContactEntity } from "utils";
 
 import EmptyState from "components/Common/EmptyState";
+import { CONTACTS } from "components/Dashboard/constants";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import Create from "./Pane/Create";
 import Table from "./Table";
-
-import { CONTACTS } from "../constants";
 
 const Contacts = () => {
   const [loading, setLoading] = useState(true);
@@ -20,6 +21,18 @@ const Contacts = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [contacts, setContacts] = useState([]);
+  const [selectedContactIds, setSelectedContactIds] = useState([]);
+
+  const createContact = values => {
+    setContacts(contacts => [...contacts, createContactEntity(values)]);
+    Toastr.success("A new contact has been created successfully");
+  };
+  const removeContact = () => {
+    setContacts(contacts =>
+      contacts.filter(contact => !selectedContactIds.includes(contact.id))
+    );
+    Toastr.success("Deleted contact(s) successfully");
+  };
 
   useEffect(() => {
     try {
@@ -37,7 +50,7 @@ const Contacts = () => {
   }
 
   return (
-    <div className="flex overflow-hidden">
+    <div className="flex w-full overflow-hidden">
       <Menu showMenu={showMenu} />
       <Container>
         <Header
@@ -58,7 +71,25 @@ const Contacts = () => {
           }}
         />
         {contacts.length ? (
-          <Table contacts={contacts} />
+          <>
+            <SubHeader
+              rightActionBlock={
+                <Button
+                  disabled={!selectedContactIds.length}
+                  icon={Delete}
+                  label={`Delete (${selectedContactIds.length})`}
+                  size="small"
+                  onClick={() => setShowDeleteAlert(true)}
+                />
+              }
+            />
+            <Table
+              contacts={contacts}
+              selectedContactIds={selectedContactIds}
+              setContacts={setContacts}
+              setSelectedContactIds={setSelectedContactIds}
+            />
+          </>
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
@@ -69,13 +100,15 @@ const Contacts = () => {
           />
         )}
         <Create
-          createContact={null}
+          createContact={createContact}
           setShowPane={setShowNewContactPane}
           showPane={showNewContactPane}
         />
         {showDeleteAlert && (
           <DeleteAlert
-            removeContact={null}
+            removeContact={removeContact}
+            selectedContactIds={selectedContactIds}
+            setSelectedContactIds={setSelectedContactIds}
             onClose={() => setShowDeleteAlert(false)}
           />
         )}
