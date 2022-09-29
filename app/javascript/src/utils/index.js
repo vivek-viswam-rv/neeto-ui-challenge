@@ -66,3 +66,16 @@ export const buildContactFormData = contact => ({
   emails: buildEmailInput(contact.emails),
   role: buildSelectOption(contact.role),
 });
+
+export const buildContactEntity = values => ({
+  ...values,
+  id: getNewId(),
+  createdAt: getDateStamp(),
+});
+
+export const buildNoteEntity = values => ({
+  ...values,
+  id: getNewId(),
+  lastUpdated: getTimeStamp(),
+  isModified: false,
+});

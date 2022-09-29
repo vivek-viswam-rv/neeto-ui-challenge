@@ -4,10 +4,9 @@ import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select, EmailInput } from "neetoui/formik";
+import { buildContactFormData, parseContactValues } from "utils";
 
-import { buildContactFormData, parseContactValues } from "utils/index";
-
-import { CONTACTS_FORM_VALIDATION_SCHEMA, ROLE_OPTIONS } from "../constants";
+import { VALIDATION_SCHEMA, ROLE_OPTIONS } from "./constants";
 
 const Form = ({
   onClose,
@@ -34,7 +33,7 @@ const Form = ({
       initialValues={buildContactFormData(contact)}
       validateOnBlur={submitted}
       validateOnChange={submitted}
-      validationSchema={CONTACTS_FORM_VALIDATION_SCHEMA}
+      validationSchema={VALIDATION_SCHEMA}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 import { Table as FormikTable } from "neetoui";
-
-import { buildRowData } from "utils/index";
+import { buildRowData } from "utils";
 
 import { TABLE_COLUMN_DATA } from "./constants";
 import Edit from "./Pane/Edit";

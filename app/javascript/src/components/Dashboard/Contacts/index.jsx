@@ -4,9 +4,9 @@ import EmptyNotesListImage from "images/EmptyNotesList";
 import { Delete } from "neetoicons";
 import { Button, PageLoader } from "neetoui";
 import { Container, Header, SubHeader } from "neetoui/layouts";
+import { buildContactEntity } from "utils";
 
 import EmptyState from "components/Common/EmptyState";
-import { getDateStamp, getNewId } from "utils/index";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
@@ -24,12 +24,8 @@ const Contacts = () => {
   const [contacts, setContacts] = useState([]);
   const [selectedContactIds, setSelectedContactIds] = useState([]);
 
-  const createContact = contact => {
-    setContacts(contacts => [
-      ...contacts,
-      { ...contact, id: getNewId(), createdAt: getDateStamp() },
-    ]);
-  };
+  const createContact = values =>
+    setContacts(contacts => [...contacts, buildContactEntity(values)]);
   const removeContact = () =>
     setContacts(contacts =>
       contacts.filter(contact => !selectedContactIds.includes(contact.id))
