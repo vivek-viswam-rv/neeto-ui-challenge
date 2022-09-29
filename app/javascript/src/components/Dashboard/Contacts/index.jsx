@@ -73,7 +73,7 @@ const Contacts = () => {
                 <Button
                   disabled={!selectedContactIds.length}
                   icon={Delete}
-                  label="Delete"
+                  label={`Delete (${selectedContactIds.length})`}
                   size="small"
                   onClick={() => setShowDeleteAlert(true)}
                 />
@@ -103,6 +103,7 @@ const Contacts = () => {
         {showDeleteAlert && (
           <DeleteAlert
             removeContact={removeContact}
+            selectedContactIds={selectedContactIds}
             setSelectedContactIds={setSelectedContactIds}
             onClose={() => setShowDeleteAlert(false)}
           />
