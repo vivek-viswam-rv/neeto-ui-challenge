@@ -35,7 +35,7 @@ const Table = ({
         note={selectedNote}
         setShowPane={setShowEditNote}
         showPane={showEditNote}
-        updateNote={(id, values) => updateNote({ id, values, setNotes })}
+        updateNote={({ id, values }) => updateNote({ id, values, setNotes })}
       />
     </>
   );
