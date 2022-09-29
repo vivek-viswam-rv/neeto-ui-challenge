@@ -1,5 +1,7 @@
 import React from "react";
 
+import { getNewKey } from "utils";
+
 import Card from "./Card";
 import DropdownMenu from "./DropdownMenu";
 
@@ -19,8 +21,8 @@ export const COLUMN_DATA = [
     title: "Email",
     render: emails => (
       <div className="flex flex-col">
-        {emails.map((email, idx) => (
-          <div key={idx}>{email}</div>
+        {emails.map(email => (
+          <div key={getNewKey()}>{email}</div>
         ))}
       </div>
     ),

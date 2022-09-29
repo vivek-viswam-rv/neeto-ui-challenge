@@ -10,6 +10,7 @@ const buildEmailInput = emails =>
     valid: true,
   }));
 
+export const getNewKey = getNewId;
 export const isPresent = R.pipe(R.either(R.isNil, R.isEmpty), R.not);
 
 export const timeAgoInWords = dateTime => dayjs(dateTime).fromNow();
