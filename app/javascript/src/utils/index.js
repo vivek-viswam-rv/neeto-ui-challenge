@@ -14,7 +14,7 @@ export const getNewKey = getNewId;
 export const isPresent = R.pipe(R.either(R.isNil, R.isEmpty), R.not);
 
 export const timeAgoInWords = dateTime => dayjs(dateTime).fromNow();
-export const getTimeStamp = () => dayjs().toString();
+
 export const getDateStamp = () => {
   const date = new Date();
   const month = date.toLocaleString("default", { month: "long" });
@@ -81,16 +81,5 @@ export const createContactEntity = values => ({
   id: getNewId(),
   createdAt: getDateStamp(),
 });
-export const createNoteEntity = values => ({
-  ...values,
-  id: getNewId(),
-  lastUpdated: getTimeStamp(),
-  isModified: false,
-});
-export const updateContactEntity = ({ id, values }) => ({ ...values, id });
-export const updateNoteEntity = ({ id, values }) => ({
-  ...values,
-  id,
-  lastUpdated: getTimeStamp(),
-  isModified: true,
-});
+
+export const modifyContactEntity = ({ id, values }) => ({ ...values, id });

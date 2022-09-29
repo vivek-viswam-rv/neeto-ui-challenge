@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Table as NeetoUITable, Toastr } from "neetoui";
-import { buildRowData, updateContactEntity } from "utils";
+import { buildRowData, modifyContactEntity } from "utils";
 
 import { COLUMN_DATA } from "./constants";
 import Edit from "./Pane/Edit";
@@ -19,7 +19,7 @@ const Table = ({
   const updateContact = (id, values) => {
     setContacts(contacts =>
       contacts.map(contact =>
-        contact.id === id ? updateContactEntity({ id, values }) : contact
+        contact.id === id ? modifyContactEntity({ id, values }) : contact
       )
     );
     Toastr.success("The contact has been successfully updated.");
