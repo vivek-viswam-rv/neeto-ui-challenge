@@ -61,21 +61,34 @@ export const buildRowData = (contacts, setShowEditPane, setSelectedContact) =>
 
 export const getNewId = uuidV4;
 
-export const buildContactFormData = contact => ({
+export const buildContactInitialValues = contact => ({
   ...contact,
   emails: buildEmailInput(contact.emails),
   role: buildSelectOption(contact.role),
 });
 
-export const buildContactEntity = values => ({
+export const buildNoteInitialValues = note => ({
+  ...note,
+  assignedContact: buildSelectOption(note.assignedContact),
+  tags: note.tags.map(buildSelectOption),
+});
+
+export const createContactEntity = values => ({
   ...values,
   id: getNewId(),
   createdAt: getDateStamp(),
 });
 
-export const buildNoteEntity = values => ({
+export const createNoteEntity = values => ({
   ...values,
   id: getNewId(),
   lastUpdated: getTimeStamp(),
   isModified: false,
+});
+
+export const updateNoteEntity = (id, values) => ({
+  ...values,
+  id,
+  lastUpdated: getTimeStamp(),
+  isModified: true,
 });

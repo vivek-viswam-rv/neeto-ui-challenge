@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Button, PageLoader } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
-import { buildNoteEntity } from "utils";
+import { createNoteEntity } from "utils";
 
 import EmptyState from "components/Common/EmptyState";
 import { NOTES } from "components/Dashboard/constants";
@@ -34,7 +34,7 @@ const Notes = () => {
   }, []);
 
   const createNote = values =>
-    setNotes(notes => [...notes, buildNoteEntity(values)]);
+    setNotes(notes => [...notes, createNoteEntity(values)]);
 
   const removeNote = () =>
     setNotes(notes => notes.filter(note => note.id !== selectedNoteId));

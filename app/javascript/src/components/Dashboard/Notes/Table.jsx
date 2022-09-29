@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { getTimeStamp } from "utils";
+import { updateNoteEntity } from "utils";
 
 import Note from "./Note";
 import Edit from "./Pane/Edit";
@@ -16,11 +16,7 @@ const Table = ({
 
   const updateNote = (id, values) =>
     setNotes(notes =>
-      notes.map(note =>
-        note.id === id
-          ? { ...values, id, lastUpdated: getTimeStamp(), isModified: true }
-          : note
-      )
+      notes.map(note => (note.id === id ? updateNoteEntity(id, values) : note))
     );
 
   return (

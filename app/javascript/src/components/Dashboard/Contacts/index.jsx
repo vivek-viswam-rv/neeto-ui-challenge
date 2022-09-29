@@ -4,7 +4,7 @@ import EmptyNotesListImage from "images/EmptyNotesList";
 import { Delete } from "neetoicons";
 import { Button, PageLoader } from "neetoui";
 import { Container, Header, SubHeader } from "neetoui/layouts";
-import { buildContactEntity } from "utils";
+import { createContactEntity } from "utils";
 
 import EmptyState from "components/Common/EmptyState";
 import { CONTACTS } from "components/Dashboard/constants";
@@ -24,7 +24,7 @@ const Contacts = () => {
   const [selectedContactIds, setSelectedContactIds] = useState([]);
 
   const createContact = values =>
-    setContacts(contacts => [...contacts, buildContactEntity(values)]);
+    setContacts(contacts => [...contacts, createContactEntity(values)]);
   const removeContact = () =>
     setContacts(contacts =>
       contacts.filter(contact => !selectedContactIds.includes(contact.id))

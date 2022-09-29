@@ -4,7 +4,7 @@ import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select } from "neetoui/formik";
-import { buildSelectOption, parseNoteValues } from "utils";
+import { buildNoteInitialValues, parseNoteValues } from "utils";
 
 import { CONTACT_OPTIONS, VALIDATION_SCHEMA, TAG_OPTIONS } from "./constants";
 
@@ -30,18 +30,10 @@ const NoteForm = ({
 
   return (
     <Formik
+      initialValues={buildNoteInitialValues(note)}
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={VALIDATION_SCHEMA}
-      initialValues={
-        isEdit
-          ? {
-              ...note,
-              assignedContact: buildSelectOption(note.assignedContact),
-              tags: note.tags.map(buildSelectOption),
-            }
-          : note
-      }
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (

@@ -4,7 +4,7 @@ import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select, EmailInput } from "neetoui/formik";
-import { buildContactFormData, parseContactValues } from "utils";
+import { buildContactInitialValues, parseContactValues } from "utils";
 
 import { VALIDATION_SCHEMA, ROLE_OPTIONS } from "./constants";
 
@@ -30,7 +30,7 @@ const Form = ({
 
   return (
     <Formik
-      initialValues={buildContactFormData(contact)}
+      initialValues={buildContactInitialValues(contact)}
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={VALIDATION_SCHEMA}
