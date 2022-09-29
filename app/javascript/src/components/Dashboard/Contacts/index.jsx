@@ -5,6 +5,7 @@ import { Button, PageLoader } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
+import { getDateStamp } from "utils/index";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
@@ -20,6 +21,13 @@ const Contacts = () => {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [contacts, setContacts] = useState([]);
+
+  const createContact = contact => {
+    setContacts(contacts => [
+      ...contacts,
+      { ...contact, createdAt: getDateStamp() },
+    ]);
+  };
 
   useEffect(() => {
     try {
@@ -69,7 +77,7 @@ const Contacts = () => {
           />
         )}
         <Create
-          createContact={null}
+          createContact={createContact}
           setShowPane={setShowNewContactPane}
           showPane={showNewContactPane}
         />
