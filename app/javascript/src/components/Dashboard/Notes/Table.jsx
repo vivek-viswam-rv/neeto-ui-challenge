@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { getTimeStamp } from "utils/index";
+import { getTimeStamp } from "utils";
 
 import Note from "./Note";
 import Edit from "./Pane/Edit";

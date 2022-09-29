@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import EmptyNotesListImage from "images/EmptyNotesList";
 import { Button, PageLoader } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
+import { buildNoteEntity } from "utils";
 
 import EmptyState from "components/Common/EmptyState";
-import { buildNoteEntity } from "utils/index";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
