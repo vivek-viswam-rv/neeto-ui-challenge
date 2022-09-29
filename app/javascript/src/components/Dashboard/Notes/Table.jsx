@@ -14,17 +14,14 @@ const Table = ({
   const [showEditNote, setShowEditNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState({});
 
-  const updateNote = (id, values) => {
+  const updateNote = (id, values) =>
     setNotes(notes =>
-      notes.map(note => {
-        if (note.id === id) {
-          return { ...values, lastUpdated: getTimeStamp(), isModified: true };
-        }
-
-        return note;
-      })
+      notes.map(note =>
+        note.id === id
+          ? { ...values, id, lastUpdated: getTimeStamp(), isModified: true }
+          : note
+      )
     );
-  };
 
   return (
     <>

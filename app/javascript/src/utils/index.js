@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import * as R from "ramda";
 import slugify from "slugify";
+import { v4 as uuidV4 } from "uuid";
 
 const buildEmailInput = emails =>
   emails.map(email => ({
@@ -56,6 +57,8 @@ export const buildRowData = (contacts, setShowEditPane, setSelectedContact) =>
       key: idx,
     };
   });
+
+export const getNewId = uuidV4;
 
 export const buildContactFormData = contact => ({
   ...contact,

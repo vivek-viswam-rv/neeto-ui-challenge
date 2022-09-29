@@ -12,8 +12,10 @@ const Table = ({ contacts = [], setContacts }) => {
   const [showEditPane, setShowEditPane] = useState(false);
   const [selectedContact, setSelectedContact] = useState({});
 
-  const updateContact = contact => {
-    setContacts([contact]);
+  const updateContact = (id, values) => {
+    setContacts(contacts =>
+      contacts.map(contact => (contact.id === id ? { ...values, id } : contact))
+    );
   };
   const TABLE_ROW_DATA = buildRowData(
     contacts,

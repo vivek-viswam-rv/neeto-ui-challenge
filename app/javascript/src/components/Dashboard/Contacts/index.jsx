@@ -5,7 +5,7 @@ import { Button, PageLoader } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
-import { getDateStamp } from "utils/index";
+import { getDateStamp, getNewId } from "utils/index";
 
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
@@ -25,7 +25,7 @@ const Contacts = () => {
   const createContact = contact => {
     setContacts(contacts => [
       ...contacts,
-      { ...contact, createdAt: getDateStamp() },
+      { ...contact, id: getNewId(), createdAt: getDateStamp() },
     ]);
   };
 

@@ -21,7 +21,7 @@ const Form = ({
   const handleSubmit = values => {
     try {
       isEdit
-        ? updateContact(parseContactValues(values))
+        ? updateContact(contact.id, parseContactValues(values))
         : createContact(parseContactValues(values));
       onClose();
     } catch (err) {
