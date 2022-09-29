@@ -40,7 +40,12 @@ export const parseContactValues = values => {
   return { ...values, emails, role };
 };
 
-export const buildRowData = (contacts, setShowEditPane, setSelectedContact) =>
+export const buildRowData = (
+  contacts,
+  setShowEditPane,
+  setSelectedContact,
+  setShowDeleteAlert
+) =>
   contacts.map((contact, idx) => {
     const name = `${contact.firstName} ${contact.lastName}`;
 
@@ -51,6 +56,10 @@ export const buildRowData = (contacts, setShowEditPane, setSelectedContact) =>
       dropdown: {
         handleEdit: () => {
           setShowEditPane(true);
+          setSelectedContact(contact);
+        },
+        handleDelete: () => {
+          setShowDeleteAlert(true);
           setSelectedContact(contact);
         },
       },

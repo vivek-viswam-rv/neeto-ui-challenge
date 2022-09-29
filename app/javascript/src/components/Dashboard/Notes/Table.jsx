@@ -42,7 +42,6 @@ const Table = ({
         ))}
       </div>
       <Edit
-        isEdit
         note={selectedNote}
         setShowPane={setShowEditNote}
         showPane={showEditNote}

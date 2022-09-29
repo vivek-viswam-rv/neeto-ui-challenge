@@ -5,12 +5,14 @@ import { Dropdown } from "neetoui";
 
 const { Menu, MenuItem, Divider } = Dropdown;
 
-const DropdownMenu = ({ handleEdit }) => (
+const DropdownMenu = ({ handleEdit, handleDelete }) => (
   <Dropdown className="block" customTarget={<MenuVertical />}>
     <Menu>
       <MenuItem.Button onClick={handleEdit}>Edit</MenuItem.Button>
       <Divider />
-      <MenuItem.Button style="danger">Delete</MenuItem.Button>
+      <MenuItem.Button style="danger" onClick={handleDelete}>
+        Delete
+      </MenuItem.Button>
     </Menu>
   </Dropdown>
 );
