@@ -51,7 +51,7 @@ const Contacts = () => {
   }
 
   return (
-    <div className="flex overflow-hidden">
+    <div className="flex w-full overflow-hidden">
       <Menu showMenu={showMenu} />
       <Container>
         <Header
