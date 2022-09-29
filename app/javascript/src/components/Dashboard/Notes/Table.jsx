@@ -16,7 +16,9 @@ const Table = ({
 
   const updateNote = (id, values) =>
     setNotes(notes =>
-      notes.map(note => (note.id === id ? updateNoteEntity(id, values) : note))
+      notes.map(note =>
+        note.id === id ? updateNoteEntity({ id, values }) : note
+      )
     );
 
   return (

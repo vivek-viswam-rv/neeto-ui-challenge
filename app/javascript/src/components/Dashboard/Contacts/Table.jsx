@@ -19,11 +19,15 @@ const Table = ({
   const updateContact = (id, values) =>
     setContacts(contacts =>
       contacts.map(contact =>
-        contact.id === id ? updateContactEntity(id, values) : contact
+        contact.id === id ? updateContactEntity({ id, values }) : contact
       )
     );
 
-  const ROW_DATA = buildRowData(contacts, setShowEditPane, setSelectedContact);
+  const ROW_DATA = buildRowData({
+    contacts,
+    setShowEditPane,
+    setSelectedContact,
+  });
 
   return (
     <div className="notes-table-height h-full w-full">

@@ -52,7 +52,11 @@ export const buildNoteInitialValues = note => ({
   tags: note.tags.map(buildSelectOption),
 });
 
-export const buildRowData = (contacts, setShowEditPane, setSelectedContact) =>
+export const buildRowData = ({
+  contacts,
+  setShowEditPane,
+  setSelectedContact,
+}) =>
   contacts.map(contact => {
     const name = `${contact.firstName} ${contact.lastName}`;
 
@@ -82,8 +86,8 @@ export const createNoteEntity = values => ({
   lastUpdated: getTimeStamp(),
   isModified: false,
 });
-export const updateContactEntity = (id, values) => ({ ...values, id });
-export const updateNoteEntity = (id, values) => ({
+export const updateContactEntity = ({ id, values }) => ({ ...values, id });
+export const updateNoteEntity = ({ id, values }) => ({
   ...values,
   id,
   lastUpdated: getTimeStamp(),
