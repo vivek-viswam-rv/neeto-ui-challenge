@@ -7,7 +7,7 @@ export const INITIAL_VALUES = {
   firstName: "",
   lastName: "",
   emails: [],
-  role: {},
+  role: "",
 };
 
 export const VALIDATION_SCHEMA = yup.object().shape({
