@@ -56,7 +56,7 @@ const Form = ({
             </div>
             <div className="w-full">
               <EmailInput
-                label="Email Address"
+                label="Email Address*"
                 name="emails"
                 placeholder="Enter email address"
               />
