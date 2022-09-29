@@ -1,3 +1,4 @@
+import slugify from "slugify";
 import { buildSelectOption } from "utils";
 import * as yup from "yup";
 
@@ -21,7 +22,14 @@ export const VALIDATION_SCHEMA = yup.object().shape({
       "Please make sure all emails are valid.",
       emails => emails.every(({ valid }) => valid)
     ),
-  role: yup.object().required("Role is required").nullable(),
+  role: yup
+    .object()
+    .shape({
+      label: yup.string().oneOf(ROLES),
+      value: yup.string().oneOf(ROLES.map(slugify)),
+    })
+    .required("Role is required")
+    .nullable(),
 });
 
 export const ROLE_OPTIONS = ROLES.map(buildSelectOption);
