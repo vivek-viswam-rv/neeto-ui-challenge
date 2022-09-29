@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Table as NeetoUITable } from "neetoui";
-import { buildRowData } from "utils";
+import { buildRowData, updateContactEntity } from "utils";
 
 import { COLUMN_DATA } from "./constants";
 import Edit from "./Pane/Edit";
@@ -16,11 +16,12 @@ const Table = ({
   const [showEditPane, setShowEditPane] = useState(false);
   const [selectedContact, setSelectedContact] = useState({});
 
-  const updateContact = (id, values) => {
+  const updateContact = (id, values) =>
     setContacts(contacts =>
-      contacts.map(contact => (contact.id === id ? { ...values, id } : contact))
+      contacts.map(contact =>
+        contact.id === id ? updateContactEntity(id, values) : contact
+      )
     );
-  };
 
   const ROW_DATA = buildRowData(contacts, setShowEditPane, setSelectedContact);
 

@@ -82,14 +82,13 @@ export const createContactEntity = values => ({
   id: getNewId(),
   createdAt: getDateStamp(),
 });
-
 export const createNoteEntity = values => ({
   ...values,
   id: getNewId(),
   lastUpdated: getTimeStamp(),
   isModified: false,
 });
-
+export const updateContactEntity = (id, values) => ({ ...values, id });
 export const updateNoteEntity = (id, values) => ({
   ...values,
   id,
