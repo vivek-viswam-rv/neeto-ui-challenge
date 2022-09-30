@@ -8,10 +8,10 @@ const CONTACT_NAMES = CONTACTS.map(
   contact => `${contact.firstName} ${contact.lastName}`
 );
 
-export const EMPTY_NOTE = {
+export const FORM_INITIAL_VALUES = {
   title: "",
   description: "",
-  assignedContact: "",
+  assignedContact: null,
   tags: [],
 };
 
@@ -20,7 +20,7 @@ export const CONTACT_OPTIONS = CONTACTS.map(contact =>
   buildSelectOption(`${contact.firstName} ${contact.lastName}`)
 );
 
-export const VALIDATION_SCHEMA = yup.object().shape({
+export const FORM_VALIDATION_SCHEMA = yup.object().shape({
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
   assignedContact: yup

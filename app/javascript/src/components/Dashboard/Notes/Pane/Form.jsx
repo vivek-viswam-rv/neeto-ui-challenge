@@ -5,7 +5,11 @@ import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 
-import { CONTACT_OPTIONS, VALIDATION_SCHEMA, TAG_OPTIONS } from "./constants";
+import {
+  CONTACT_OPTIONS,
+  FORM_VALIDATION_SCHEMA,
+  TAG_OPTIONS,
+} from "./constants";
 import { buildNoteInitialValues, parseNoteValues } from "./utils";
 
 const NoteForm = ({
@@ -33,7 +37,7 @@ const NoteForm = ({
       initialValues={buildNoteInitialValues(note)}
       validateOnBlur={submitted}
       validateOnChange={submitted}
-      validationSchema={VALIDATION_SCHEMA}
+      validationSchema={FORM_VALIDATION_SCHEMA}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
