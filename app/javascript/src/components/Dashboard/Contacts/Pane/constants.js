@@ -4,14 +4,14 @@ import * as yup from "yup";
 
 import { ROLES } from "components/Dashboard/constants";
 
-export const EMPTY_CONTACT = {
+export const FORM_INITIAL_VALUES = {
   firstName: "",
   lastName: "",
   emails: [],
-  role: "",
+  role: null,
 };
 
-export const VALIDATION_SCHEMA = yup.object().shape({
+export const FORM_VALIDATION_SCHEMA = yup.object().shape({
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
   emails: yup

@@ -5,7 +5,7 @@ import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
 import { Input, Select, EmailInput } from "neetoui/formik";
 
-import { VALIDATION_SCHEMA, ROLE_OPTIONS } from "./constants";
+import { FORM_VALIDATION_SCHEMA, ROLE_OPTIONS } from "./constants";
 import { buildContactInitialValues, parseContactValues } from "./utils";
 
 const Form = ({
@@ -33,7 +33,7 @@ const Form = ({
       initialValues={buildContactInitialValues(contact)}
       validateOnBlur={submitted}
       validateOnChange={submitted}
-      validationSchema={VALIDATION_SCHEMA}
+      validationSchema={FORM_VALIDATION_SCHEMA}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
