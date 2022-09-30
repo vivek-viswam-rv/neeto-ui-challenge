@@ -4,6 +4,10 @@ import * as yup from "yup";
 
 import { CONTACTS, TAGS } from "components/Dashboard/constants";
 
+const CONTACT_NAMES = CONTACTS.map(
+  contact => `${contact.firstName} ${contact.lastName}`
+);
+
 export const EMPTY_NOTE = {
   title: "",
   description: "",
@@ -21,6 +25,10 @@ export const VALIDATION_SCHEMA = yup.object().shape({
   description: yup.string().required("Description is required"),
   assignedContact: yup
     .object()
+    .shape({
+      label: yup.string().oneOf(CONTACT_NAMES),
+      value: yup.string().oneOf(CONTACT_NAMES.map(slugify)),
+    })
     .nullable()
     .required("Assigned contact required"),
   tags: yup
