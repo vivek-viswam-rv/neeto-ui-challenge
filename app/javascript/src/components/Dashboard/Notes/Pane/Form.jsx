@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Formik, Form as FormikForm } from "formik";
 import { Check } from "neetoicons";
 import { Button, Pane } from "neetoui";
-import { Input, Select } from "neetoui/formik";
+import { Input, Select, Textarea } from "neetoui/formik";
 
 import {
   CONTACT_OPTIONS,
@@ -50,7 +50,7 @@ const NoteForm = ({
               name="title"
               placeholder="Enter a title for the note"
             />
-            <Input
+            <Textarea
               required
               className="w-full flex-grow-0"
               label="Description"
